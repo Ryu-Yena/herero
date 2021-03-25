@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="place">
+	
+	<!-- 리스트 전체 가져오기 -->
+	<select id="selectList" resultType="com.herero.vo.PlaceVo">
+		<![CDATA[
+			select 	p.place_no placeNo,
+					p.place_name placeName,
+					p.place_address placeAddress,
+					p.place_content placeContent,
+					p.place_category placeCategory,
+					pi.image_name,
+                    pi.first_image
+			from place p, pImage pi
+            where p.place_no=pi.place_no
+			order by p.place_no desc
+		]]>
+	</select>
+	
+	<!-- 게시글 읽어오기 -->
+	<select id="selectOne" parameterType="int" resultType="com.herero.vo.PlaceVo" >
+		<![CDATA[
+			select p.place_no placeNo,
+    			   p.place_name placeName,
+    			   p.place_address placeAddress,
+    			   p.place_category placeCategory,
+    			   p.place_content placeContent,
+    			   p.place_image placeImage,
+    			   r.room_name roomName,
+			       r.room_ppl_number roomMember,
+    			   r.room_price roomPrice,
+			       r.room_booked_fee roomFee
+			from place p, room r
+			where p.place_no = r.place_no
+			and p.place_no = #{no}
+		]]>
+	</select>
+
+</mapper>
