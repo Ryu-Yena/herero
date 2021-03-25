@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/slider2.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar2.css">
 
+<!-- Map api -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=zwwe251o80"></script>
 </head>
 <body>
 
@@ -78,7 +82,7 @@
 				<div class="container">
 					<div class="row">
 
-						<div class="col-md-9 col-sm-12" style="text-align: justify;">
+						<div class="col-md-8 col-sm-12" style="text-align: justify;">
 							<div class="wow fadeInUp section-title" data-wow-delay="0.2s">
 								<h2>About Us</h2>
 								<br>
@@ -88,11 +92,23 @@
 								</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12" style="text-align: justify;">
+						<div class="col-md-4 col-sm-12" style="text-align: justify;">
 							<div style="text-align: justify;">
 								<strong>위치 </strong>
 							</div>
-							<p style="text-align: justify;">구글 지도 삽입</p>
+							<div id="map" style="width:100%; height: 300px;">
+								<script>
+								var map = new naver.maps.Map('map', {
+								    center: new naver.maps.LatLng(14140677.3536975,4508273.8431882),
+								    zoom: 15
+								});
+
+								var marker = new naver.maps.Marker({
+								    position: new naver.maps.LatLng(14140677.3536975,4508273.8431882),
+								    map: map
+								});
+								</script>
+							</div>
 						</div>
 					</div>
 				</div>
