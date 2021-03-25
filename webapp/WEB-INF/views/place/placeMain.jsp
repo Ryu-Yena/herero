@@ -65,7 +65,7 @@
 							<div
 								style="border: 2px solid #e5e5e5; border-radius: 22px; height: 273px;">
 								<img width="35%" height="270px"
-									src="${pageContext.request.contextPath}/images/placeImages/${placeVo.placeImage}"
+									src="${pageContext.request.contextPath}/images/placeImages/${placeVo.image_name}"
 									alt=""
 									style="float: left; margin-right: 30px; border-top-left-radius: 20px; border-bottom-left-radius: 19px;" />
 								<div class="actions special" style="padding: 20px;">

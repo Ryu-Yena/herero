@@ -73,7 +73,7 @@ public class RoomVo {
 
 	@Override
 	public String toString() {
-		return "RoomVo [roomNo=" + roomNo + ", placeNo=" + placeNo + ", roomNme=" + roomName + ", roomMember="
+		return "RoomVo [roomNo=" + roomNo + ", placeNo=" + placeNo + ", roomName=" + roomName + ", roomMember="
 				+ roomMember + ", roomPrice=" + roomPrice + ", roomFee=" + roomFee + "]";
 	}
 

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.herero.dao.PlaceDao;
+import com.herero.vo.PImageVo;
 import com.herero.vo.PlaceVo;
+import com.herero.vo.RoomVo;
 
 @Service
 public class PlaceService {
@@ -24,8 +26,25 @@ public class PlaceService {
 	//게시글 읽기
 	public PlaceVo getPage(int no) {
 		System.out.println("[placeService] placePage()");
-
-		return placeDao.placePage(no);
+		
+		System.out.println("======================================");
+		//장소정보 가져오기
+		PlaceVo placeVo =placeDao.placePage(no);
+		
+		//룸 리스트 가져오기
+		List<RoomVo> roomList = placeDao.roomList(no);
+		
+		//이미지 리스트 가져오기
+		List<PImageVo> imageList = placeDao.imageList(no);
+		
+		
+		//룸 리스트 저장
+		placeVo.setRoomList(roomList);
+		
+		//이미지 리스트 저장
+		placeVo.setImageList(imageList);
+		
+		return placeVo;
 	}
 	
 

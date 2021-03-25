@@ -8,8 +8,8 @@
     <input type="radio" name="slide" id="slide3">
     <input type="radio" name="slide" id="slide4">
     <ul id="imgholder" class="imgs">
-    	<c:forEach items="${placeList}" var="placeVo">
-        	<li><img src="${pageContext.request.contextPath}/images/placeImages/${placeVo.placeImage}"></li>
+    	<c:forEach items="${placeVo.imageList}" var="placeVo">
+        	<li><img src="${pageContext.request.contextPath}/images/placeImages/${placeVo.imageName}"></li>
        	</c:forEach>
     </ul>
     <div class="bullets">

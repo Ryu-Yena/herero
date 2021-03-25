@@ -58,17 +58,15 @@
 										<td>가격</td>
 										<td>계약금</td>
 									</tr>
+									<c:forEach items="${placeVo.roomList}" var="placeVo">
 									<tr>
-										<td>${roomList.roomMember}인</td>
-										<td>40000원</td>
-										<td>4000원</td>
+										<td>${placeVo.roomMember}인</td>
+										<td>${placeVo.roomPrice}원</td>
+										<td>${placeVo.roomFee}원</td>
 									</tr>
+									</c:forEach>
 									</table>
 
-								<div class="wow fadeInUp section-title" data-wow-delay="0.2s" >
-									<div style="text-align: justify;"><strong>위치	</strong></div>
-									<p style="text-align: justify;">구글 지도 삽입</p>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -80,19 +78,22 @@
 				<div class="container">
 					<div class="row">
 
-						<div class="col-md-12 col-sm-12" style="text-align: justify;">
+						<div class="col-md-9 col-sm-12" style="text-align: justify;">
 							<div class="wow fadeInUp section-title" data-wow-delay="0.2s">
 								<h2>About Us</h2>
 								<br>
 								<br>
-
 								<p>
 									${placeVo.placeContent}
 								</p>
-
 							</div>
 						</div>
-
+						<div class="col-md-3 col-sm-12" style="text-align: justify;">
+							<div style="text-align: justify;">
+								<strong>위치 </strong>
+							</div>
+							<p style="text-align: justify;">구글 지도 삽입</p>
+						</div>
 					</div>
 				</div>
 			</section>
