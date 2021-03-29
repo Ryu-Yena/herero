@@ -29,7 +29,6 @@ public class GroupVo {
 	private GImageVo gImageMain;
 
 	/* 검색할때 사용 */
-	private int max_cnt;
 	private String gkeyword;
 
 	public GroupVo() {
@@ -37,7 +36,8 @@ public class GroupVo {
 
 	public GroupVo(int group_no, int province_no, String province, int region_no, String name, int category_no,
 			String category_name, String group_name, String group_url, String content, String founded_date,
-			int member_cnt, List<GImageVo> gImageList, GImageVo gImageMain, int max_cnt, String gkeyword) {
+			int member_cnt, List<GImageVo> gImageList, GImageVo gImageMain, String gkeyword) {
+		super();
 		this.group_no = group_no;
 		this.province_no = province_no;
 		this.province = province;
@@ -52,7 +52,6 @@ public class GroupVo {
 		this.member_cnt = member_cnt;
 		this.gImageList = gImageList;
 		this.gImageMain = gImageMain;
-		this.max_cnt = max_cnt;
 		this.gkeyword = gkeyword;
 	}
 
@@ -168,14 +167,6 @@ public class GroupVo {
 		this.gImageMain = gImageMain;
 	}
 
-	public int getMax_cnt() {
-		return max_cnt;
-	}
-
-	public void setMax_cnt(int max_cnt) {
-		this.max_cnt = max_cnt;
-	}
-
 	public String getGkeyword() {
 		return gkeyword;
 	}
@@ -190,6 +181,6 @@ public class GroupVo {
 				+ ", region_no=" + region_no + ", name=" + name + ", category_no=" + category_no + ", category_name="
 				+ category_name + ", group_name=" + group_name + ", group_url=" + group_url + ", content=" + content
 				+ ", founded_date=" + founded_date + ", member_cnt=" + member_cnt + ", gImageList=" + gImageList
-				+ ", gImageMain=" + gImageMain + ", max_cnt=" + max_cnt + ", gkeyword=" + gkeyword + "]";
+				+ ", gImageMain=" + gImageMain + ", gkeyword=" + gkeyword + "]";
 	}
 }

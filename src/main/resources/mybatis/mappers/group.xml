@@ -187,9 +187,9 @@
 			and   rt.region_no = #{region_no}
 			]]>
 		</if>  	
-		<if test='max_cnt > 0'  >
+		<if test='category_no > 0'  >
 			<![CDATA[	
-			and   rt.member_cnt <= #{max_cnt}
+			and   rt.category_no = #{category_no}
 			]]>
 		</if>  
 		<if test='gkeyword != null'  >
@@ -271,7 +271,7 @@
 	
 	
 	
-	<!-- 소모임 메인 리스트(일반) -->
+	<!-- 소모임 메인 최신리스트 -->
 	<select id="selectLastlyGroupList" resultType="com.herero.vo.GroupVo">
 		<![CDATA[
 			select  rt.rn,

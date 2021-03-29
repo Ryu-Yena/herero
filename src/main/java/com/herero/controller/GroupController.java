@@ -91,7 +91,7 @@ public class GroupController {
 		System.out.println("GroupController.addGroup()");
 		
 		groupService.addGroup(groupVo, mainImg, files); 
-		return "";
+		return "redirect:/group/groupMain";
 	}
 	
 		
@@ -103,7 +103,7 @@ public class GroupController {
 		System.out.println(groupVo);
 		
 		Map<String, List<GroupVo>> groupMainMap = groupService.getGroupList(groupVo);
-		System.out.println(groupMainMap);
+		/* System.out.println(groupMainMap); */
 		
 		model.addAttribute("groupMainMap", groupMainMap);
 		return "group/groupMain";
@@ -133,14 +133,6 @@ public class GroupController {
 		
 		return regionList;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

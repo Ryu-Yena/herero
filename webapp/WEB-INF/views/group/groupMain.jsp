@@ -105,14 +105,11 @@
 						<select id="selectBoxRegion" class="col-2"  name="region_no">
 							<option selected value="0">구</option>
 						</select>
-						<select class="col-2" name="max_cnt">
-							<option selected value="0">인원</option>
-							<option value="2">2인</option>
-							<option value="4">4인</option>
-							<option value="6">6인</option>
-							<option value="8">8인</option>
-							<option value="9">8인이상</option>
+						
+						<select id="selectBoxCategory" class="col-2" name="category_no">
+							<option selected value="0">관심분야</option>
 						</select>
+						
 						<input class="col-3" name="gkeyword" type="text" placeholder="검색어를 입력해 주세요">
 						<button id="btn-group-search" type="submit" class="button primary">검색</button>
 						
@@ -175,6 +172,7 @@
 $(document).ready(function(){
    //지역1 리스트 출력
    getProvinceList();
+   getCategoryList();
 });
 
 
@@ -233,6 +231,33 @@ function getRegion(province_no){
 			}
 			
 			$("#selectBoxRegion").html(strHtml);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
+
+
+/* 관심사리스트 가져오기 */
+function getCategoryList() {
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath }/group/getCategoryList",		
+		type : "post",
+		dataType : "json",
+		success : function(categoryList){
+			console.log(categoryList);
+
+			var strHtml = "";
+			
+			strHtml += "<option selected value='0'>관심분야</option>";
+			for(var i=0; i<categoryList.length; i++){
+				strHtml += "<option value='"+ categoryList[i].category_no +"'>"+ categoryList[i].category_name +"</option>";
+			}
+			
+			$("#selectBoxCategory").html(strHtml);
+	
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
