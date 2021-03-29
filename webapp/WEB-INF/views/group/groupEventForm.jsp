@@ -83,7 +83,14 @@
 		</header>
 
 		<!-- Nav -->
-		<c:import url="/WEB-INF/views/include/homeNav.jsp"></c:import>
+		<nav id="nav">
+			<ul>
+				<li><a href="#calender">Calender</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/eventForm" class="active">Event</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
+				<li><a href="#cta">Setting</a></li>
+			</ul>
+		</nav>
 
 		<!-- Main -->
 		<div id="main">
@@ -145,7 +152,7 @@
 				</div> -->
 				
 				
-	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 365px;">
+	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 20%;">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -192,13 +199,13 @@
                                 <div class="input-group">
                                     <label class="label">공지사항</label>
                                     <div class="input-group-icon">
-                                        <textarea placeholder="공지" style="width: 585px;"></textarea>
+                                        <textarea placeholder="내용을 입력하세요" style="width: 575px;"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="bt-area" style="margin-left: 325px;">
+                        <div class="bt-area" style="margin-left: 50%;">
 	                        <div class="">
 	                            <button class="btn btn--radius-2 btn-cre" type="submit" style="float:left;">일정생성</button>
 	                        </div>
@@ -252,9 +259,9 @@
 						,
 						showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
 						,
-						changeYear : true //콤보박스에서 년 선택 가능
+						changeYear : false //콤보박스에서 년 선택 가능
 						,
-						changeMonth : true //콤보박스에서 월 선택 가능                
+						changeMonth : false //콤보박스에서 월 선택 가능                
 						,
 						showOn : "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
 						,
@@ -277,9 +284,9 @@
 						dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
 								'토요일' ] //달력의 요일 부분 Tooltip 텍스트
 						,
-						minDate : "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+						minDate : "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 						,
-						maxDate : "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+						maxDate : "+2Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
 					});
 
 			//input을 datepicker로 선언

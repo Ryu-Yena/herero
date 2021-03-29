@@ -16,7 +16,7 @@
 		</c:when>
 		<c:otherwise>
 			<ul>
-				<li>${sessionScope.authUser.user_name}님안녕하세요^^</li>
+				<li>${sessionScope.authUser.user_name}님</li>
 				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/modifyForm">회원정보수정</a></li>
 			</ul>

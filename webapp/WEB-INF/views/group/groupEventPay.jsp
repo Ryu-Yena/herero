@@ -145,7 +145,7 @@
 				</div> -->
 				
 				
-	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 365px;">
+	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 20%;">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -217,7 +217,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="bt-area" style="margin-left: 325px;">
+                        <div class="bt-area" style="margin-left: 50%;">
 	                        <div class="">
 	                            <button class="btn btn--radius-2 btn-cre" type="submit" style="float:left;">결제하기</button>
 	                        </div>

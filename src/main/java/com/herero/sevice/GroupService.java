@@ -73,6 +73,10 @@ public class GroupService {
 		//소모임 데이터 저장
 		groupDao.insertGroup(groupVo);
 		
+		//소모임장 등록
+		
+		//group_no,user_no,nickname,
+		
 		//실제파일 저장경로
 		String saveDir = "C:\\javaStudy\\hereroImg"; 
 		
@@ -183,6 +187,7 @@ public class GroupService {
 		
 		return groupDao.selectListRegionOnly(province_no);
 	}
+	
 	
 	
 }

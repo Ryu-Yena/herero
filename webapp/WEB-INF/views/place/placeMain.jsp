@@ -27,9 +27,9 @@
 			
 			<br> <br>
 
-				<section class="srcarea" style="height: 38px;">
+				<section class="srcarea" style="height: 38px;" style="float:right;">
 					<div class="row">
-						<span><p>'SEARCH'</p></span>
+						<!-- <span><p>'SEARCH'</p></span>
 						<select class="col-2" name="rgn">
 							<option selected>시/군</option>
 							<option>서울특별시</option>
@@ -50,7 +50,7 @@
 							<option>4인</option>
 							<option>6인</option>
 							<option>8인</option>
-							<option>8인이상</option>
+							<option>8인이상</option> -->
 						</select>
 							<input class="col-3" type="text" placeholder="검색어를 입력해 주세요">
 							<button type="button" class="button primary">검색</button>

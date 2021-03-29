@@ -1,318 +1,286 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body style="background-color: #fff">
-	<div id="container"
-		style="width: 100%; position: relative; height: 600px;" class="locale-ko ">
-		<div class="calendar-container ">
-			<div class="header" id="nav1" style="overflow: hidden;">
+<link rel="dns-prefetch" href="//unpkg.com" />
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+
+<style>
+[x-cloak] {
+	display: none;
+}
+</style>
+
+<body class="calendar">
+<div class="antialiased sans-serif bg-gray-100 h-screen">
+	<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+		<div class="container mx-auto px-4 py-2 md:py-24" style="padding-bottom: 16px; padding-top: 16px;">
+
+			<div class="bg-white rounded-lg shadow overflow-hidden">
+
+				<div class="flex items-center justify-between py-2 px-6">
+					<div>
+						<span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
+						<span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+					</div>
+					<div class="border rounded-lg px-1" style="padding-top: 2px;">
+						<button 
+							type="button"
+							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" 
+							:class="{'cursor-not-allowed opacity-25': month == 0 }"
+							:disabled="month == 0 ? true : false"
+							@click="month--; getNoOfDays()">
+							<svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+							</svg>  
+						</button>
+						<div class="border-r inline-flex h-6"></div>		
+						<button 
+							type="button"
+							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1" 
+							:class="{'cursor-not-allowed opacity-25': month == 11 }"
+							:disabled="month == 11 ? true : false"
+							@click="month++; getNoOfDays()">
+							<svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+							</svg>									  
+						</button>
+					</div>
+				</div>	
+
+				<div class="-mx-1 -mb-1">
+					<div class="flex flex-wrap">
+						<template x-for="(day, index) in DAYS" :key="index">	
+							<div style="width: 14.26%" class="px-2 py-2">
+								<div
+									x-text="day" 
+									class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center"></div>
+							</div>
+						</template>
+					</div>
+
+					<div class="flex flex-wrap border-t border-l">
+						<template x-for="blankday in blankdays">
+							<div 
+								style="width: 14.28%; height: 120px"
+								class="text-center border-r border-b px-4 pt-2"	
+							></div>
+						</template>	
+						<template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
+							<div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
+								<div
+									@click="showEventModal(date)"
+									x-text="date"
+									class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
+									:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
+								></div>
+								<div style="height: 80px;" class="overflow-y-auto mt-1">
+									<!-- <div 
+										class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none"
+										x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"
+										x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div> -->
+
+									<template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">	
+										<div
+											class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
+											:class="{
+												'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
+												'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
+												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
+												'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
+												'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+											}"
+										>
+											<p x-text="event.event_title" class="text-sm truncate leading-tight"></p>
+										</div>
+									</template>
+								</div>
+							</div>
+						</template>
+					</div>
+				</div>
 			</div>
-			<div class="view-cap t1-embed">&nbsp;</div>
-			<div class="view-cap t2-embed">&nbsp;</div>
-			<div class="view-container-border" id="calendarContainer1">
-				<div id="viewContainer1" class="view-container" style="height: 600px;">
-					<div class="mv-container">
-						<table cellspacing="0" class="mv-daynames-table" id="mvDaynamesTable" >
-							<tbody>
-								<tr>
-									<th class="mv-dayname" title="일">일</th>
-									<th class="mv-dayname" title="월">월</th>
-									<th class="mv-dayname" title="화">화</th>
-									<th class="mv-dayname" title="수">수</th>
-									<th class="mv-dayname" title="목">목</th>
-									<th class="mv-dayname" title="금">금</th>
-									<th class="mv-dayname" title="토">토</th>
-								</tr>
-							</tbody>
-						</table>
-						<div class="mv-event-container" id="mvEventContainer2">
-							<div class="month-row" style="top: 0%; height: 21%">
-								<table cellpadding="0" cellspacing="0" class="st-bg-table">
-									<tbody>
-										<tr>
-											<td class="st-bg st-bg-fc">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-								<table cellpadding="0" cellspacing="0" class="st-grid">
-									<tbody>
-										<tr>
-											<td
-												class="st-dtitle st-dtitle-fr st-dtitle-fc st-dtitle-nonmonth"><span
-												class="ca-cdp26204">28</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26209">3월 1일</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26210">2</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26211">3</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26212">4</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26213">5</span></td>
-											<td class="st-dtitle st-dtitle-fr"><span
-												class="ca-cdp26214">6</span></td>
-										</tr>
-										<tr>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c"><div class="st-c-pos">
-													<div class="ca-evp1  rb-n"
-														style=" color:#fff; background-color: #b80f12;">
-														<div class="rb-ni">삼일절</div>
-													</div>
-												</div></td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="month-row" style="top: 20%; height: 21%">
-								<table cellpadding="0" cellspacing="0" class="st-bg-table">
-									<tbody>
-										<tr>
-											<td class="st-bg st-bg-fc">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-								<table cellpadding="0" cellspacing="0" class="st-grid">
-									<tbody>
-										<tr>
-											<td class="st-dtitle st-dtitle-fc"><span
-												class="ca-cdp26215">7</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26216">8</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26217">9</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26218">10</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26219">11</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26220">12</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26221">13</span></td>
-										</tr>
-										<tr>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="month-row" style="top: 40%; height: 21%">
-								<table cellpadding="0" cellspacing="0" class="st-bg-table">
-									<tbody>
-										<tr>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-								<table cellpadding="0" cellspacing="0" class="st-grid">
-									<tbody>
-										<tr>
-											<td class="st-dtitle"><span
-												class="ca-cdp26222">14</span></td>
-											<td class="st-dtitle"><span
-												class="ca-cdp26223">15</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26224">16</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26225">17</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26226">18</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26227">19</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26228">20</span></td>
-										</tr>
-										<tr>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="month-row" style="top: 60%; height: 21%">
-								<table cellpadding="0" cellspacing="0" class="st-bg-table">
-									<tbody>
-										<tr>
-											<td class="st-bg st-bg-fc">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-								<table cellpadding="0" cellspacing="0" class="st-grid">
-									<tbody>
-										<tr>
-											<td class="st-dtitle st-dtitle-fc st-dtitle-down"><span
-												class="ca-cdp26229">21</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26230">22</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26231">23</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26232">24</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26233">25</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26234">26</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26235">27</span></td>
-										</tr>
-										<tr>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="month-row" style="top: 80%; bottom: 0">
-								<table cellpadding="0" cellspacing="0" class="st-bg-table">
-									<tbody>
-										<tr>
-											<td class="st-bg st-bg-fc">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-											<td class="st-bg">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-								<table cellpadding="0" cellspacing="0" class="st-grid">
-									<tbody>
-										<tr>
-											<td class="st-dtitle st-dtitle-fc"><span
-												class="ca-cdp26236">28</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26237">29</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26238">30</span></td>
-											<td class="st-dtitle"><span class="ca-cdp26239">31</span></td>
-											<td class="st-dtitle st-dtitle-nonmonth"><span
-												class="ca-cdp26241">4월 1일</span></td>
-											<td class="st-dtitle st-dtitle-nonmonth"><span
-												class="ca-cdp26242">2</span></td>
-											<td class="st-dtitle st-dtitle-nonmonth"><span
-												class="ca-cdp26243">3</span></td>
-										</tr>
-										<tr>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-											<td class="st-c st-s">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
+		</div>
+
+		<!-- Modal -->
+		<div style=" background-color: rgba(0, 0, 0, 0.8)" class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-full" x-show.transition.opacity="openEventModal">
+			<div class="p-4 max-w-xl mx-auto relative absolute left-0 right-0 overflow-hidden mt-24">
+				<div class="shadow absolute right-0 top-0 w-10 h-10 rounded-full bg-white text-gray-500 hover:text-gray-800 inline-flex items-center justify-center cursor-pointer"
+					x-on:click="openEventModal = !openEventModal">
+					<svg class="fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+						<path
+							d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z" />
+					</svg>
+				</div>
+
+				<div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
+					
+					<h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Add Event Details</h2>
+				 
+					<div class="mb-4">
+						<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event title</label>
+						<input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_title">
+					</div>
+
+					<div class="mb-4">
+						<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event date</label>
+						<input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_date" readonly>
+					</div>
+
+					<div class="inline-block w-64 mb-4">
+						<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Select a theme</label>
+						<div class="relative">
+							<select @change="event_theme = $event.target.value;" x-model="event_theme" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
+									<template x-for="(theme, index) in themes">
+										<option :value="theme.value" x-text="theme.label"></option>
+									</template>
+								
+							</select>
+							<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+							<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div id="loading1" class="loading"
-					style="right: 25px; display: none;">로드 중...</div>
-				<div style="display: none; z-index: 1001; width: 400px;" class="bubble">
-					<table cellpadding="0" cellspacing="0" class="bubble-table">
-						<tbody>
-							<tr>
-								<td class="bubble-cell-side"><div class="bubble-corner"
-										id="tl:0">
-										<div class="bubble-sprite bubble-tl"></div>
-									</div></td>
-								<td class="bubble-cell-main"><div class="bubble-top"></div></td>
-								<td class="bubble-cell-side"><div class="bubble-corner"
-										id="tr:0">
-										<div class="bubble-sprite bubble-tr"></div>
-									</div></td>
-							</tr>
-							<tr>
-								<td colspan="3" class="bubble-mid"><div
-										style="overflow: hidden" id="bubbleContent:0"></div></td>
-							</tr>
-							<tr>
-								<td><div class="bubble-corner" id="bl:0">
-										<div class="bubble-sprite bubble-bl"></div>
-									</div></td>
-								<td><div class="bubble-bottom"></div></td>
-								<td><div class="bubble-corner" id="br:0">
-										<div class="bubble-sprite bubble-br"></div>
-									</div></td>
-							</tr>
-						</tbody>
-					</table>
-					<div id="bubbleClose:0" class="bubble-closebutton"
-						onclick="gcal$func$[2]();"></div>
-					<div class="prong" id="prong:0" onclick="gcal$func$[2]()">
-						<div class="bubble-sprite"></div>
-					</div>
-				</div>
-				<div style="display: none; z-index: 1001; width: 400px;"
-					class="bubble">
-					<table cellpadding="0" cellspacing="0" class="bubble-table">
-						<tbody>
-							<tr>
-								<td class="bubble-cell-side"><div class="bubble-corner"
-										id="tl:1">
-										<div class="bubble-sprite bubble-tl"></div>
-									</div></td>
-								<td class="bubble-cell-main"><div class="bubble-top"></div></td>
-								<td class="bubble-cell-side"><div class="bubble-corner"
-										id="tr:1">
-										<div class="bubble-sprite bubble-tr"></div>
-									</div></td>
-							</tr>
-							<tr>
-								<td colspan="3" class="bubble-mid"><div
-										style="overflow: hidden" id="bubbleContent:1"></div></td>
-							</tr>
-							<tr>
-								<td><div class="bubble-corner" id="bl:1">
-										<div class="bubble-sprite bubble-bl"></div>
-									</div></td>
-								<td><div class="bubble-bottom"></div></td>
-								<td><div class="bubble-corner" id="br:1">
-										<div class="bubble-sprite bubble-br"></div>
-									</div></td>
-							</tr>
-						</tbody>
-					</table>
-					<div id="bubbleClose:1" class="bubble-closebutton"
-						onclick="gcal$func$[4]();"></div>
-					<div class="prong" id="prong:1" onclick="gcal$func$[4]()">
-						<div class="bubble-sprite"></div>
+ 
+					<div class="mt-8 text-right">
+						<button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
+							Cancel
+						</button>	
+						<button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
+							Save Event
+						</button>	
 					</div>
 				</div>
 			</div>
-			<div class="view-cap t2-embed">&nbsp;</div>
-			<div class="view-cap t1-embed">&nbsp;</div>
 		</div>
+		<!-- /Modal -->
 	</div>
+</div>
+
 
 </body>
+
+<script>
+		const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+		function app() {
+			return {
+				month: '',
+				year: '',
+				no_of_days: [],
+				blankdays: [],
+				days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+				events: [
+					{
+						event_date: new Date(2020, 3, 1),
+						event_title: "April Fool's Day",
+						event_theme: 'blue'
+					},
+
+					{
+						event_date: new Date(2020, 3, 10),
+						event_title: "Birthday",
+						event_theme: 'red'
+					},
+
+					{
+						event_date: new Date(2020, 3, 16),
+						event_title: "Upcoming Event",
+						event_theme: 'green'
+					}
+				],
+				event_title: '',
+				event_date: '',
+				event_theme: 'blue',
+
+				themes: [
+					{
+						value: "blue",
+						label: "Blue Theme"
+					},
+					{
+						value: "red",
+						label: "Red Theme"
+					},
+					{
+						value: "yellow",
+						label: "Yellow Theme"
+					},
+					{
+						value: "green",
+						label: "Green Theme"
+					},
+					{
+						value: "purple",
+						label: "Purple Theme"
+					}
+				],
+
+				openEventModal: false,
+
+				initDate() {
+					let today = new Date();
+					this.month = today.getMonth();
+					this.year = today.getFullYear();
+					this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+				},
+
+				isToday(date) {
+					const today = new Date();
+					const d = new Date(this.year, this.month, date);
+
+					return today.toDateString() === d.toDateString() ? true : false;
+				},
+
+				showEventModal(date) {
+					// open the modal
+					this.openEventModal = true;
+					this.event_date = new Date(this.year, this.month, date).toDateString();
+				},
+
+				addEvent() {
+					if (this.event_title == '') {
+						return;
+					}
+
+					this.events.push({
+						event_date: this.event_date,
+						event_title: this.event_title,
+						event_theme: this.event_theme
+					});
+
+					console.log(this.events);
+
+					// clear the form data
+					this.event_title = '';
+					this.event_date = '';
+					this.event_theme = 'blue';
+
+					//close the modal
+					this.openEventModal = false;
+				},
+
+				getNoOfDays() {
+					let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+
+					// find where to start calendar day of week
+					let dayOfWeek = new Date(this.year, this.month).getDay();
+					let blankdaysArray = [];
+					for ( var i=1; i <= dayOfWeek; i++) {
+						blankdaysArray.push(i);
+					}
+
+					let daysArray = [];
+					for ( var i=1; i <= daysInMonth; i++) {
+						daysArray.push(i);
+					}
+					
+					this.blankdays = blankdaysArray;
+					this.no_of_days = daysArray;
+				}
+			}
+		}
+	</script>

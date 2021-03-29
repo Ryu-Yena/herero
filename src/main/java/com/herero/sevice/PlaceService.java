@@ -23,7 +23,7 @@ public class PlaceService {
 		return placeDao.selectList();
 	}
 	
-	//게시글 읽기
+	//대관 상세페이지 읽기
 	public PlaceVo getPage(int no) {
 		System.out.println("[placeService] placePage()");
 		
