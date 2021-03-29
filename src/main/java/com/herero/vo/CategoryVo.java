@@ -1,18 +1,17 @@
 package com.herero.vo;
 
+/*소모임 등록폼 > 소모임 관심사 선택 모달창에서 사용*/
+
 public class CategoryVo {
-	
-	
+
 	private int category_no;
 	private String category_name;
 	private String category_enrolled_date;
-	
+
 	public CategoryVo() {
-		super();
 	}
 
 	public CategoryVo(int category_no, String category_name, String category_enrolled_date) {
-		super();
 		this.category_no = category_no;
 		this.category_name = category_name;
 		this.category_enrolled_date = category_enrolled_date;
@@ -47,7 +46,5 @@ public class CategoryVo {
 		return "CategoryVo [category_no=" + category_no + ", category_name=" + category_name
 				+ ", category_enrolled_date=" + category_enrolled_date + "]";
 	}
-	
-	
 
 }

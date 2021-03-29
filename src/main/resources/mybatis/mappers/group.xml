@@ -2,8 +2,401 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="user">
+<mapper namespace="group">
 	
 	<!-- 쿼리문입력 -->
+	<!-- 소모임 위치 가져오기 -->
+	<select id="selectListProvince" parameterType="string" resultType="com.herero.vo.ProvinceVo">
+		<![CDATA[
+			select  t.province_no,
+			        t.province,
+			        t.region_no,
+			        t.name
+			from (
+			        select  p.province_no,
+			                p.province,
+			                null region_no,
+			                null name
+			        from province p
+			        where p.province like '%'||#{value}||'%'
+			        
+			        union
+			        
+			        select  p.province_no,
+			                p.province,
+			                r.region_no,
+			                r.name
+			        from province p, region r
+			        where p.province_no = r.province_no
+			        and r.name like '%'||#{value}||'%'
+			) t
+			order by province_no asc, region_no asc nulls first
+		]]>
+	</select>
 
+
+	<!-- 소모임 위치 가져오기 -->
+	<select id="selectListCategory" resultType="com.herero.vo.CategoryVo">
+		<![CDATA[
+			select  category_no,
+        			category_name,
+        			category_enrolled_date 
+			from category
+		]]>
+	</select>
+	
+	
+	
+	<!-- 소모임명으로 조회하기 (중복체크)-->
+	<select id="selectCntByGroupName" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from groups
+			where group_name = #{value}
+		]]>
+	</select>
+	
+	
+	<!-- url로 조회하기 (중복체크)-->
+	<select id="selectCntByUrlName" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from groups
+			where group_url = #{value}
+		]]>
+	</select>
+	
+	
+	
+	<!-- 소모임 등록-->
+	<insert id="insertGroup" parameterType="com.herero.vo.GroupVo">
+		<selectKey keyProperty="group_no" resultType="int" order="BEFORE">
+			select SEQ_GROUP_NO.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into groups 
+			values (
+			    #{group_no},
+			    #{province_no},
+			    #{region_no},
+			    #{category_no},
+			   	#{group_name},
+			    #{group_url},
+			    #{content},
+			    sysdate
+			)
+		]]>
+	</insert>
+	
+	
+	<!-- 소모임 이미지등록-->
+	<insert id="insertGroupImage" parameterType="com.herero.vo.GImageVo">
+		<![CDATA[
+			insert into GImage 
+			values (
+			    SEQ_GROUP_IMAGE_NO.nextval,
+			    #{group_no},
+			    #{image_name},
+			    sysdate,
+			   	#{mainImg}
+			)
+		]]>
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 소모임 메인 리스트(일반) -->
+	<select id="selectGroupList" parameterType="com.herero.vo.GroupVo" resultType="com.herero.vo.GroupVo">
+		<![CDATA[
+			select  rt.rn,
+			        rt.group_no,
+			        rt.province_no,
+			        rt.province,
+			        rt.region_no,
+			        rt.name,
+			        rt.category_no,
+			        rt.category_name,
+			        rt.group_name,
+			        rt.group_url,
+			        rt.content,
+			        rt.founded_date,
+			        rt.member_cnt
+			from(select rownum rn,
+			            ot.group_no,
+			            ot.province_no,
+			            ot.province,
+			            ot.region_no,
+			            ot.name,
+			            ot.category_no,
+			            ot.category_name,
+			            ot.group_name,
+			            ot.group_url,
+			            ot.content,
+			            ot.founded_date,
+			            ot.member_cnt
+			     from (select gtbl.group_no,
+			                  gtbl.province_no,
+			                  gtbl.province,
+			                  gtbl.region_no,
+			                  gtbl.name,
+			                  gtbl.category_no,
+			                  gtbl.category_name,
+			                  gtbl.group_name,
+			                  gtbl.group_url,
+			                  gtbl.group_content content,
+			                  gtbl.founded_date,
+			                  NVL(ctbl.member_cnt, 0) member_cnt
+			            from(select gs.group_no,
+			                        gs.province_no,
+			                        pv.province,
+			                        gs.region_no,
+			                        rg.name,
+			                        gs.category_no,
+			                        ct.category_name,
+			                        gs.group_name,
+			                        gs.group_url,
+			                        gs.group_content,
+			                        gs.founded_date				
+			                 from groups gs, province pv, region rg, category ct
+			                 where gs.province_no = pv.province_no
+			                 and gs.region_no = rg.region_no
+			                 and gs.category_no = ct.category_no) gtbl
+			                 ,
+			                (select group_no, count(*) member_cnt
+			                 from groupmember
+			                 group by group_no) ctbl
+			            where gtbl.group_no = ctbl.group_no(+)
+			            order by gtbl.founded_date desc ) ot
+			     ) rt 
+			where rt.rn >=1
+			and   rt.rn <=10
+		]]>	
+		<if test="province_no > 0" >
+			<![CDATA[	
+			and   rt.province_no = #{province_no}
+			]]>
+		</if>    
+			
+		<if test='region_no > 0'  >
+			<![CDATA[	
+			and   rt.region_no = #{region_no}
+			]]>
+		</if>  	
+		<if test='max_cnt > 0'  >
+			<![CDATA[	
+			and   rt.member_cnt <= #{max_cnt}
+			]]>
+		</if>  
+		<if test='gkeyword != null'  >
+			<![CDATA[	
+			and   rt.group_name like '%'||#{gkeyword}||'%'
+			]]>
+		</if>  
+		
+	</select>
+	
+	
+	<!-- 추천(가입자수)리스트-->
+	<select id="selectRcmdGroupList" resultType="com.herero.vo.GroupVo">
+		<![CDATA[
+			select  rt.rn,
+			        rt.group_no,
+			        rt.province_no,
+			        rt.province,
+			        rt.region_no,
+			        rt.name,
+			        rt.category_no,
+			        rt.category_name,
+			        rt.group_name,
+			        rt.group_url,
+			        rt.content,
+			        rt.founded_date,
+			        rt.member_cnt
+			from(select rownum rn,
+			            ot.group_no,
+			            ot.province_no,
+			            ot.province,
+			            ot.region_no,
+			            ot.name,
+			            ot.category_no,
+			            ot.category_name,
+			            ot.group_name,
+			            ot.group_url,
+			            ot.content,
+			            ot.founded_date,
+			            ot.member_cnt
+			     from (select gtbl.group_no,
+			                  gtbl.province_no,
+			                  gtbl.province,
+			                  gtbl.region_no,
+			                  gtbl.name,
+			                  gtbl.category_no,
+			                  gtbl.category_name,
+			                  gtbl.group_name,
+			                  gtbl.group_url,
+			                  gtbl.group_content content,
+			                  gtbl.founded_date,
+			                  NVL(ctbl.member_cnt, 0) member_cnt
+			            from(select gs.group_no,
+			                        gs.province_no,
+			                        pv.province,
+			                        gs.region_no,
+			                        rg.name,
+			                        gs.category_no,
+			                        ct.category_name,
+			                        gs.group_name,
+			                        gs.group_url,
+			                        gs.group_content,
+			                        gs.founded_date				
+			                 from groups gs, province pv, region rg, category ct
+			                 where gs.province_no = pv.province_no
+			                 and gs.region_no = rg.region_no
+			                 and gs.category_no = ct.category_no) gtbl
+			                 ,
+			                (select group_no, count(*) member_cnt
+			                 from groupmember
+			                 group by group_no) ctbl
+			            where gtbl.group_no = ctbl.group_no(+)
+			            order by member_cnt desc ) ot
+			     ) rt 
+			where rt.rn >=1
+			and   rt.rn <=2
+		]]>
+	</select>
+	
+	
+	
+	<!-- 소모임 메인 리스트(일반) -->
+	<select id="selectLastlyGroupList" resultType="com.herero.vo.GroupVo">
+		<![CDATA[
+			select  rt.rn,
+			        rt.group_no,
+			        rt.province_no,
+			        rt.province,
+			        rt.region_no,
+			        rt.name,
+			        rt.category_no,
+			        rt.category_name,
+			        rt.group_name,
+			        rt.group_url,
+			        rt.content,
+			        rt.founded_date,
+			        rt.member_cnt
+			from(select rownum rn,
+			            ot.group_no,
+			            ot.province_no,
+			            ot.province,
+			            ot.region_no,
+			            ot.name,
+			            ot.category_no,
+			            ot.category_name,
+			            ot.group_name,
+			            ot.group_url,
+			            ot.content,
+			            ot.founded_date,
+			            ot.member_cnt
+			     from (select gtbl.group_no,
+			                  gtbl.province_no,
+			                  gtbl.province,
+			                  gtbl.region_no,
+			                  gtbl.name,
+			                  gtbl.category_no,
+			                  gtbl.category_name,
+			                  gtbl.group_name,
+			                  gtbl.group_url,
+			                  gtbl.group_content content,
+			                  gtbl.founded_date,
+			                  NVL(ctbl.member_cnt, 0) member_cnt
+			            from(select gs.group_no,
+			                        gs.province_no,
+			                        pv.province,
+			                        gs.region_no,
+			                        rg.name,
+			                        gs.category_no,
+			                        ct.category_name,
+			                        gs.group_name,
+			                        gs.group_url,
+			                        gs.group_content,
+			                        gs.founded_date				
+			                 from groups gs, province pv, region rg, category ct
+			                 where gs.province_no = pv.province_no
+			                 and gs.region_no = rg.region_no
+			                 and gs.category_no = ct.category_no) gtbl
+			                 ,
+			                (select group_no, count(*) member_cnt
+			                 from groupmember
+			                 group by group_no) ctbl
+			            where gtbl.group_no = ctbl.group_no(+)
+			            order by gtbl.founded_date desc ) ot
+			     ) rt 
+			where rt.rn >=1
+			and   rt.rn <=2
+		]]>
+	</select>
+	
+	
+	<!-- 소모임별 이미지 리스트 가져오기 -->
+	<select id="selectListGImage" parameterType="int" resultType="com.herero.vo.GImageVo">
+		<![CDATA[
+			select  group_image_no,
+			        group_no,
+			        image_name,
+			        uploaded_time,
+			        mainImg
+			from gImage
+			where group_no = #{group_no}
+			order by uploaded_time asc
+		]]>
+	</select>
+	
+	
+	<!-- 소모임별 대표 이미지 가져오기 -->
+	<select id="selectGImageMain" parameterType="int" resultType="com.herero.vo.GImageVo">
+		<![CDATA[
+			select  group_image_no,
+			        group_no,
+			        image_name,
+			        uploaded_time,
+			        mainImg
+			from gImage
+			where group_no = #{group_no}
+			and mainImg = 'main'
+		]]>
+	</select>
+	
+	
+	
+	
+	<!-- 지역1 Province 리스트 가져오기 -->
+	<select id="selectListProvinceOnly" resultType="com.herero.vo.ProvinceVo">
+		<![CDATA[
+			select  province_no,
+        			province
+			from province
+			order by province_no
+		]]>
+	</select>
+	
+	<!-- 지역2 region 리스트 가져오기 -->
+	<select id="selectListRegionOnly" parameterType="int" resultType="com.herero.vo.RegionVo">
+		<![CDATA[
+			select  region_no,
+			        province_no,
+			        name
+			from region
+			where province_no = #{province_no}
+			order by region_no
+		]]>
+	</select>
+	
+
+
+
+	
+	
 </mapper>

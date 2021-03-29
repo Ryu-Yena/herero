@@ -1,5 +1,6 @@
 package com.herero.vo;
 
+/*소모임 검색조건에서 사용*/
 public class RegionVo {
 	
 	
