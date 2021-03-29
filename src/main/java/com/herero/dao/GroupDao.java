@@ -85,7 +85,7 @@ public class GroupDao {
 	/* 소모임별 대표 이미지 가져오기 */
 	public GImageVo selectGImageMain(int group_no){
 		System.out.println("[GroupDao.selectGImageMain()]");
-		System.out.println(sqlSession.selectOne("group.selectGImageMain", group_no).toString());
+		
 		return sqlSession.selectOne("group.selectGImageMain", group_no);
 	}
 	
