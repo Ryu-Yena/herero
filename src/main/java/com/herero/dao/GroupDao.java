@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.herero.vo.CategoryVo;
-import com.herero.vo.GroupVo;
 import com.herero.vo.GImageVo;
+import com.herero.vo.GroupVo;
+import com.herero.vo.GroupmemberVo;
 import com.herero.vo.ProvinceVo;
 import com.herero.vo.RegionVo;
 
@@ -62,6 +63,13 @@ public class GroupDao {
 		System.out.println("[GroupDao.insertGroupImage()]");
 		
 		return sqlSession.insert("group.insertGroupImage", gImageVo);
+	}
+	
+	/* 소모임 회원 저장 */
+	public int insertGroupMember(GroupmemberVo groupMemberVo) {
+		System.out.println("[GroupDao.insertGroupMember()]");
+		
+		return sqlSession.insert("group.insertGroupMember", groupMemberVo);
 	}
 	
 	

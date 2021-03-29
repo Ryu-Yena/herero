@@ -90,6 +90,23 @@
 	</insert>
 	
 	
+	<!-- 소모임 회원 저장 -->
+	<insert id="insertGroupMember" parameterType="com.herero.vo.GroupmemberVo">
+		<![CDATA[
+			insert into groupmember
+			values (
+				#{groupmember_no},
+			    #{user_no},
+			    #{group_no},
+			    #{nickname},
+			   	sysdate,
+			    #{master}
+			)
+		]]>
+	</insert>
+	
+	
+	
 	<!-- 소모임 이미지등록-->
 	<insert id="insertGroupImage" parameterType="com.herero.vo.GImageVo">
 		<![CDATA[

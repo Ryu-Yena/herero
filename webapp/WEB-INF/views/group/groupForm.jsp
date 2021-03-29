@@ -43,7 +43,7 @@
 
 				<br>
 				<br>
-				<form id="groupForm" action="${pageContext.request.contextPath}/group/addGroup" method="post" enctype="multipart/form-data">
+				<form id="groupForm" action="${pageContext.request.contextPath}/mgroup/addGroup" method="post" enctype="multipart/form-data">
 					<div align="left">
 						<h3>
 							<strong>STEP 1. 소모임 위치를 설정해주세요.</strong>
@@ -439,7 +439,7 @@
 		var pKeyword = $("#txt-pKeyword").val();
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/group/getProvinceList",		
+			url : "${pageContext.request.contextPath }/mgroup/getProvinceList",		
 			type : "post",
 			/* contentType : "application/json", */
 			data : {pKeyword: pKeyword},
@@ -482,7 +482,7 @@
 	function getCategoryList() {
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath }/group/getCategoryList",		
+			url : "${pageContext.request.contextPath }/mgroup/getCategoryList",		
 			type : "post",
 			dataType : "json",
 			success : function(categoryList){
@@ -518,7 +518,7 @@
 		
 		if(group_name.length > 0){
 			$.ajax({
-				url : "${pageContext.request.contextPath }/group/groupNameCheck",		
+				url : "${pageContext.request.contextPath }/mgroup/groupNameCheck",		
 				type : "post",
 				data : {group_name: group_name},
 				dataType : "json",
@@ -550,7 +550,7 @@
 		
 		if(group_url.length > 0){
 			$.ajax({
-				url : "${pageContext.request.contextPath }/group/groupUrlCheck",		
+				url : "${pageContext.request.contextPath }/mgroup/groupUrlCheck",		
 				type : "post",
 				data : {group_url: group_url},
 				dataType : "json",

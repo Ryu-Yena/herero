@@ -3,11 +3,12 @@ package com.herero.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import com.herero.vo.CategoryVo;
 import com.herero.vo.GroupVo;
 import com.herero.vo.ProvinceVo;
 import com.herero.vo.RegionVo;
+import com.herero.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/mgroup")
@@ -29,12 +31,19 @@ public class MGroupController {
 
 	// 소모임 가입폼
 	@RequestMapping(value = "/groupForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupForm() {
+	public String groupForm(HttpSession session) {
 		System.out.println("GroupController.groupForm()");
-
-		return "group/groupForm";
+		
+		//로그인 사용자만 가입폼에 접근 가능
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		if(authUser != null) {
+			return "group/groupForm";
+		}else {
+			return "redirect:/user/loginForm";
+		}
 	}
 
+	
 	// 소모임 가입폼 > 소모임위치선택모달 > 지역리스트 가져오기
 	@ResponseBody
 	@RequestMapping(value = "/getProvinceList", method = { RequestMethod.GET, RequestMethod.POST })
@@ -87,11 +96,24 @@ public class MGroupController {
 	
 	// 소모임 가입폼 > 소모임 만들기
 	@RequestMapping(value = "/addGroup", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addGroup(@ModelAttribute GroupVo groupVo, @RequestParam("mainImg") int mainImg, @RequestParam("file") MultipartFile[] files) {
+	public String addGroup(@ModelAttribute GroupVo groupVo, @RequestParam("mainImg") int mainImg, @RequestParam("file") MultipartFile[] files, HttpSession session) {
 		System.out.println("GroupController.addGroup()");
 		
-		groupService.addGroup(groupVo, mainImg, files); 
-		return "redirect:/group/groupMain";
+
+		//로그인 사용자만 가입폼에 접근 가능
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		int userNo = authUser.getUser_no();
+		if(authUser != null) {
+			groupService.addGroup(groupVo, mainImg, files, userNo); 
+			
+			return "redirect:/group/groupMain";
+		}else {
+			return "redirect:/user/loginForm";
+		}
+		
+		
+		
+		
 	}
 	
 		

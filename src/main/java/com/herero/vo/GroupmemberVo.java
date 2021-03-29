@@ -1,29 +1,34 @@
 package com.herero.vo;
 
 public class GroupmemberVo {
-	
+
 	private int groupmember_no;
 	private int user_no;
 	private int group_no;
 	private String nickname;
 	private String joined_date;
-	
-	public GroupmemberVo() {
-		super();
-	}
-	
-	
+	private String master;
 
-	public GroupmemberVo(int groupmember_no, int user_no, int group_no, String nickname, String joined_date) {
+	public GroupmemberVo() {
+	}
+
+	public GroupmemberVo(int user_no, int group_no, String nickname, String master) {
 		super();
+		this.user_no = user_no;
+		this.group_no = group_no;
+		this.nickname = nickname;
+		this.master = master;
+	}
+
+	public GroupmemberVo(int groupmember_no, int user_no, int group_no, String nickname, String joined_date,
+			String master) {
 		this.groupmember_no = groupmember_no;
 		this.user_no = user_no;
 		this.group_no = group_no;
 		this.nickname = nickname;
 		this.joined_date = joined_date;
+		this.master = master;
 	}
-
-
 
 	public int getGroupmember_no() {
 		return groupmember_no;
@@ -65,12 +70,18 @@ public class GroupmemberVo {
 		this.joined_date = joined_date;
 	}
 
+	public String getMaster() {
+		return master;
+	}
+
+	public void setMaster(String master) {
+		this.master = master;
+	}
+
 	@Override
 	public String toString() {
 		return "GroupmemberVo [groupmember_no=" + groupmember_no + ", user_no=" + user_no + ", group_no=" + group_no
-				+ ", nickname=" + nickname + ", joined_date=" + joined_date + "]";
+				+ ", nickname=" + nickname + ", joined_date=" + joined_date + ", master=" + master + "]";
 	}
-	
-	
 
 }

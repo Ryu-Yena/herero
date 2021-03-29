@@ -17,6 +17,7 @@ import com.herero.dao.GroupDao;
 import com.herero.vo.CategoryVo;
 import com.herero.vo.GImageVo;
 import com.herero.vo.GroupVo;
+import com.herero.vo.GroupmemberVo;
 import com.herero.vo.ProvinceVo;
 import com.herero.vo.RegionVo;
 
@@ -67,15 +68,16 @@ public class GroupService {
 	
 	
 	/* 소모임 만들기 */
-	public void addGroup(GroupVo groupVo, int mainImg, MultipartFile[] files){
+	public void addGroup(GroupVo groupVo, int mainImg, MultipartFile[] files, int userNo){
 		System.out.println("[GroupService.addGroup()]");
 		
 		//소모임 데이터 저장
 		groupDao.insertGroup(groupVo);
 		
 		//소모임장 등록
+		GroupmemberVo groupMemberVo = new GroupmemberVo(userNo, groupVo.getGroup_no(), "운영자", "0");
+		groupDao.insertGroupMember(groupMemberVo);
 		
-		//group_no,user_no,nickname,
 		
 		//실제파일 저장경로
 		String saveDir = "C:\\javaStudy\\hereroImg"; 
