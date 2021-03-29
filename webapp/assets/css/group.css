@@ -67,12 +67,6 @@
 		padding: 0;
 	}
 
-	input, select, textarea {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-	}
 
 /* Basic */
 
@@ -2079,7 +2073,6 @@
 
 	label {
 		color: #646464;
-		display: block;
 		font-size: 0.9em;
 		font-weight: 300;
 		margin: 0 0 1em 0;
@@ -2149,85 +2142,7 @@
 		padding: 0.75em 1em;
 	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		display: block;
-		float: left;
-		margin-right: -2em;
-		opacity: 0;
-		width: 1em;
-		z-index: -1;
-	}
-
-		input[type="checkbox"] + label,
-		input[type="radio"] + label {
-			text-decoration: none;
-			color: #777;
-			cursor: pointer;
-			display: inline-block;
-			font-size: 1em;
-			font-weight: 300;
-			padding-left: 2.55em;
-			padding-right: 0.75em;
-			position: relative;
-		}
-
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
-				-moz-osx-font-smoothing: grayscale;
-				-webkit-font-smoothing: antialiased;
-				display: inline-block;
-				font-style: normal;
-				font-variant: normal;
-				text-rendering: auto;
-				line-height: 1;
-				text-transform: none !important;
-				font-family: 'Font Awesome 5 Free';
-				font-weight: 900;
-			}
-
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
-				background: #f8f8f8;
-				border-radius: 6px;
-				border: solid 1px #e5e5e5;
-				content: '';
-				display: inline-block;
-				font-size: 0.8em;
-				height: 2.25em;
-				left: 0;
-				line-height: 2.25em;
-				position: absolute;
-				text-align: center;
-				top: 0;
-				width: 2.25em;
-			}
-
-		input[type="checkbox"]:checked + label:before,
-		input[type="radio"]:checked + label:before {
-			background: #666;
-			border-color: #666;
-			color: #ffffff;
-			content: '\f00c';
-		}
-
-		input[type="checkbox"]:focus + label:before,
-		input[type="radio"]:focus + label:before {
-			border-color: #e89980;
-			box-shadow: 0 0 0 1px #e89980;
-		}
-
-	input[type="checkbox"] + label:before {
-		border-radius: 6px;
-	}
-
-	input[type="radio"] + label:before {
-		border-radius: 100%;
-	}
+	
 
 	::-webkit-input-placeholder {
 		color: #999 !important;
@@ -3802,3 +3717,148 @@
 
 
 	}
+	
+	
+	
+/********************************************************** 
+* 그룹(소모임) 영역 
+**********************************************************/
+/********  공통 ********/
+button {cursor: pointer; } /* 버튼에 마우스 커서 손 모양 */
+.bold {font-weight: bold; }
+
+
+/******** 그룹(소모임) 등록 폼 ********/
+
+/* input창 */
+.groupform-input {  
+	float: left;
+	margin: 0px 5px 0px 0px;
+	width: 50%;
+	height: 38px;
+}
+
+/* input창 옆 버튼 */
+.groupform-btn {
+	float: left;
+	height: 38px;
+	line-height: normal;
+}
+
+
+/******** 그룹(소모임) 등록 폼 > 위치선택 모달창 ********/
+#modal-province	 input {
+	width: 360px !important;
+	height: 30px;
+	margin: 0px 5px 0px 0px;
+}
+
+#modal-province #btn-province-search {
+	height: 30px;
+	line-height: normal;
+	padding: 0px 15px 0px 15px;
+}
+	
+#modal-province	#province-list-box {
+	height: 400px;
+	overflow: auto;
+}
+	
+	
+#modal-province .btn-province-choice {
+	font-size: 12px;
+	padding: 5px 5px 5px 5px;
+	border: 1px solid #C1C1C1;
+}	
+		
+#modal-province #province-list-area > tr > td {
+	font-size: 12px;
+	margin: 0px 0px 0px 0px;
+	padding: 3px 10px 3px 10px;
+}
+			
+		
+
+/******** 그룹(소모임) 등록 폼 > 위치선택 모달창 ********/	
+#modal-category	#category-list-box {
+	height: 400px;
+	overflow: auto;
+}
+	
+	
+#modal-category .btn-category-choice {
+	font-size: 12px;
+	padding: 5px 5px 5px 5px;
+	border: 1px solid #C1C1C1;
+}	
+		
+#modal-category #category-list-area > tr > td {
+	font-size: 12px;
+	margin: 0px 0px 0px 0px;
+	padding: 3px 10px 3px 10px;
+}
+		
+	
+	
+/******** 그룹(소모임) 등록 폼 > 소모임(그룹)명 ********/	
+#groupNameCheckMsg {
+	margin: 47px 0px 0px 5px; 
+}
+
+
+
+/******** 그룹(소모임) 등록 폼 > url ********/
+#groupUrlCheckMsg {
+	margin: 47px 0px 0px 5px; 
+}
+
+
+
+/******** 그룹(소모임) 등록 폼 > 이미지 ********/
+.groupImg {
+	margin: 0px 0px 10px 0px; 
+}
+
+
+
+
+/******** 그룹(소모임) 등록  ********/
+#btn-addGroup {
+	margin: 0px 350px 0px 0px;
+}
+
+
+
+
+
+
+/******** 그룹(소모임) 리스트 ********/
+
+/* 검색박스 */
+.srcarea {
+	margin: 0px 0px 0px 36px;
+	height: 38px;
+}
+
+.srcarea select, .srcarea input{
+	margin: 0px 6px 0px 0px;
+}
+
+.srcarea button{
+	margin: 0px 0px 0px 0px;
+	width: 130px;
+}
+
+#groupListBox{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.gListImgH {
+	width: 190px;
+	height: 165px;
+}
+
+
+
+
