@@ -8,6 +8,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar.css" nonce="">
+   	   	
+
+	
 	</head>
 	<body>
 
@@ -25,7 +28,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="#calender" class="active">Calender</a></li>
+						<li><a href="${pageContext.request.contextPath}/group/groupHom2" class="active">Calender</a></li>
 						<li><a href="${pageContext.request.contextPath}/group/groupEventForm">Event</a></li>
 						<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 						<li><a href="#cta">Setting</a></li>
@@ -36,11 +39,11 @@
 					<div id="main">
 
 						<!-- Introduction -->
-							<section id="calender" class="main">
-								<div class="spotlight">
-									<c:import url="/WEB-INF/views/include/calendar.jsp"></c:import>
-								</div>
-							</section>
+						<section id="calender" class="main">
+							<div class="spotlight">
+								<c:import url="/WEB-INF/views/include/calendar.jsp"></c:import>
+							</div>
+						</section>
 
 					</div>
 					

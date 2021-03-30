@@ -1,24 +1,16 @@
 package com.herero.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.herero.sevice.GroupService;
-import com.herero.vo.CategoryVo;
+import com.herero.vo.EventVo;
 import com.herero.vo.GroupVo;
-import com.herero.vo.ProvinceVo;
-import com.herero.vo.RegionVo;
 
 @Controller
 @RequestMapping(value = "/group")
@@ -40,6 +32,33 @@ public class GroupController {
 		return "group/groupHome";
 
 	}
+	
+	
+	
+	
+	// 이벤트 등록
+	@RequestMapping(value="/writeEvent", method = {RequestMethod.GET, RequestMethod.POST})
+	public void writeEvent(@ModelAttribute EventVo eventVo) {
+		System.out.println("/group/writeEvent");
+		
+		System.out.println(eventVo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 그룹 상세 (그룹원 전용)
 	@RequestMapping(value = "/groupHome2", method = { RequestMethod.GET, RequestMethod.POST })

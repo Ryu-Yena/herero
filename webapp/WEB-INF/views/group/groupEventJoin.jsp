@@ -83,7 +83,14 @@
 		</header>
 
 		<!-- Nav -->
-		<c:import url="/WEB-INF/views/include/homeNav.jsp"></c:import>
+		<nav id="nav">
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/groupEventForm" class="active">Event</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
+				<li><a href="#cta">Setting</a></li>
+			</ul>
+		</nav>
 
 		<!-- Main -->
 		<div id="main">

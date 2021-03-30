@@ -85,8 +85,8 @@
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="#calender">Calender</a></li>
-				<li><a href="${pageContext.request.contextPath}/group/eventForm" class="active">Event</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/groupEventForm" class="active">Event</a></li>
 				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 				<li><a href="#cta">Setting</a></li>
 			</ul>
@@ -159,20 +159,21 @@
                     <div class="sub_tit">일정 만들기</div><br>
                     <form method="POST">
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">일정 이름</label>
                                     <input class="input--style-4" type="text" name="first_name">
                                 </div>
                             </div>
-                            <div class="col-2">
+                        </div>
+                        <div class="row row-space">
+                        <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">일정 날짜</label>
                                     <input class="input--style-4" type="text" id="datepicker">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row row-space">
+                        
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">일정 시간</label>
@@ -199,18 +200,18 @@
                                 <div class="input-group">
                                     <label class="label">공지사항</label>
                                     <div class="input-group-icon">
-                                        <textarea placeholder="내용을 입력하세요" style="width: 575px;"></textarea>
+                                        <textarea placeholder="내용을 입력하세요" style="width: 250%;"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="bt-area" style="margin-left: 50%;">
+                        <div class="bt-area" style="margin-left: 45%;">
 	                        <div class="">
-	                            <button class="btn btn--radius-2 btn-cre" type="submit" style="float:left;">일정생성</button>
+	                            <button class="btn btn--radius-2 btn-cre" type="submit" style="float:left; font-size: 14px; padding: 0 6px;">일정생성</button>
 	                        </div>
 	                         <div class="">
-	                            <button class="btn btn--radius-2 btn-can" type="submit" style="float:left; margin-left: 10px;">취소</button>
+	                            <button class="btn btn--radius-2 btn-can" type="submit" style="float:left; margin-left: 10px; font-size: 14px; padding: 0 13px;">취소</button>
 	                        </div>
                         </div>
                     </form>
@@ -263,7 +264,7 @@
 						,
 						changeMonth : false //콤보박스에서 월 선택 가능                
 						,
-						showOn : "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+						showOn : "input" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
 						,
 						buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
 						,
