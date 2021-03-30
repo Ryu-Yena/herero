@@ -7,8 +7,11 @@
 		<title>[최강류우]JAVA STUDY</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
-		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar.css" nonce="">
    	   	
+   	   	
+   	   	<!-- fullcalendar -->
+   	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fullcalendar/main.css" />
+
 
 	
 	</head>
@@ -28,7 +31,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/group/groupHom2" class="active">Calender</a></li>
+						<li><a href="${pageContext.request.contextPath}/group/groupHome2" class="active">Calender</a></li>
 						<li><a href="${pageContext.request.contextPath}/group/groupEventForm">Event</a></li>
 						<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 						<li><a href="#cta">Setting</a></li>
@@ -39,10 +42,10 @@
 					<div id="main">
 
 						<!-- Introduction -->
-						<section id="calender" class="main">
-							<div class="spotlight">
-								<c:import url="/WEB-INF/views/include/calendar.jsp"></c:import>
-							</div>
+						<section class="main">
+
+							<c:import url="/WEB-INF/views/include/calendar.jsp"></c:import>
+
 						</section>
 
 					</div>
@@ -59,6 +62,7 @@
 			<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/home.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/fullcalendar/main.js"></script>
 
 	</body>
 </html>
