@@ -130,4 +130,11 @@ public class GroupDao {
 		return sqlSession.selectList("group.selectListRegionOnly", province_no);
 	}
 	
+	/*소모임별 정보가져오기*/
+	public GroupVo groupHome(int no) {
+		System.out.println("[groupDao] groupHome");
+		
+		return sqlSession.selectOne("group.selectGroup", no);
+	}
+	
 }

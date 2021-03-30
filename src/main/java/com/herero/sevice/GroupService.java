@@ -190,6 +190,10 @@ public class GroupService {
 		return groupDao.selectListRegionOnly(province_no);
 	}
 	
-	
-	
+	/* 소모임 상세페이지 가져오기 */
+	public GroupVo getGHome(int no) {
+		System.out.println("[groupService] getGHome");
+		
+		return groupDao.groupHome(no);
+	}
 }

@@ -357,6 +357,26 @@
 	</select>
 	
 	
+	<!-- 소모임별 정보 가져오기 -->
+	<select id="selectGroup" parameterType="int" resultType="com.herero.vo.GroupVo">
+		<![CDATA[
+			select g.group_no,
+    			   p.province,
+                   r.name,
+    			   c.category_name,
+                   g.group_name,
+                   g.group_url,
+    			   g.group_content content,
+    			   g.founded_date
+    		from groups g, province p, region r, category c
+			where g.province_no = p.province_no
+            and g.region_no = r.region_no
+            and g.category_no = c.category_no
+            and group_no = #{no}
+		]]>
+	</select>
+	
+	
 	<!-- 소모임별 이미지 리스트 가져오기 -->
 	<select id="selectListGImage" parameterType="int" resultType="com.herero.vo.GImageVo">
 		<![CDATA[

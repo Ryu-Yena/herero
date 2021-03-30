@@ -32,7 +32,10 @@ public class GroupController {
 	public String groupHome(@RequestParam("no") int no, Model model) {
 		System.out.println("/group/groupHome");
 		
+		GroupVo groupVo = groupService.getGHome(no);
 		
+		model.addAttribute("groupVo", groupVo);
+		System.out.println(groupVo.toString());
 
 		return "group/groupHome";
 

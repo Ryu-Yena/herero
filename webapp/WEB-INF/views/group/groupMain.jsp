@@ -52,7 +52,7 @@
 											분야: ${groupVo.category_name} <br> 지역: ${groupVo.province} ${groupVo.name}<br> 맴버: ${groupVo.member_cnt}명
 										</p>
 										<ul class="actions special">
-											<li><a href="#" class="button primary small">소모임 가입하기</a></li>
+											<li><button class="button primary small"><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}">소모임 가입하기</a></button></li>
 										</ul>
 									</div>
 								</div>
@@ -82,7 +82,7 @@
 											분야: ${groupVo.category_name} <br> 지역: ${groupVo.province} ${groupVo.name}<br> 맴버: ${groupVo.member_cnt}명
 										</p>
 										<ul class="actions special">
-											<li><a href="#" class="button primary small">소모임 가입하기</a></li>
+											<li><button class="button primary small"><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}">소모임 가입하기</a></button></li>
 										</ul>
 									</div>
 								</div>
@@ -132,7 +132,7 @@
 										<h5>${groupVo.group_name}</h5>
 										<p style="font-size: 13px; text-align: justify; ">
 											분야 : ${groupVo.category_name} <br> 지역 : ${groupVo.province} ${groupVo.name}<br> 맴버 : ${groupVo.member_cnt}명 <br>
-											<button class="button small" style="margin-left: 40px;">소모임 가입하기</button>
+											<button class="button small" style="margin-left: 40px;"><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}">소모임 가입하기</a></button>
 										</p>
 									</div>
 								</div>

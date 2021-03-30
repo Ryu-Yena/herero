@@ -27,7 +27,6 @@ public class PlaceService {
 	public PlaceVo getPage(int no) {
 		System.out.println("[placeService] placePage()");
 		
-		System.out.println("======================================");
 		//장소정보 가져오기
 		PlaceVo placeVo =placeDao.placePage(no);
 		
