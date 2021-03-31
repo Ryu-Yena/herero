@@ -91,9 +91,4 @@
 		
 	};
 	
-	
-	$(document).ready(function() {
-	});
-
-	//메뉴얼 : https://fullcalendar.io/docs/Calendar-addEventSource
 </script>

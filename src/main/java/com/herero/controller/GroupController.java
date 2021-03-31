@@ -57,6 +57,8 @@ public class GroupController {
 		}
 		
 		
+		
+		
 		System.out.println(eventList);
 		return eventList;
 	}
