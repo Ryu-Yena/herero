@@ -65,4 +65,20 @@
 			<script src="${pageContext.request.contextPath}/assets/fullcalendar/main.js"></script>
 
 	</body>
+	
+	
+	<script type="text/javascript">
+	
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </html>

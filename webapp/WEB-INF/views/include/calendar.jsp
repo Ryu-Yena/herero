@@ -12,12 +12,15 @@
 </body>
 
 <script>
+
+	
 	
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 		 initialView: "dayGridMonth",
+		 selectable: true,
          headerToolbar: {
            start: "",
            center: "prev title next",
@@ -30,27 +33,10 @@
           let weekList = ["일", "월", "화", "수", "목", "금", "토"];
           return weekList[date.dow];
         },
-        events: {
-	        url: "${pageContext.request.contextPath}/group/groupHome2",
-	        method: "GET",
-	        failure: function () {
-	          alert("there was an error while fetching events!");
-	        },
-	      },
-	     eventDidMount: function (arg) {
-            const eventTitle = arg.event.title;
-            const eventEl = arg.el;
-
-            const firstIconEl = eventEl.querySelector(".event-icon.first");
-            const secondIconEl = eventEl.querySelector(".event-icon.second");
-
-            firstIconEl.addEventListener("click", () =>
-              firstIconClickHandler(eventTitle)
-            );
-            secondIconEl.addEventListener("click", () =>
-              secondIconClickHandler(eventTitle)
-            );
-          },
+        editable: true,
+        selectable: true,
+        businessHours: true,
+        dayMaxEvents: true, // allow "more" link when too many events
           dateClick: function (dateClickInfo) {
             const gray = "#787878";
             if (dateClickInfo.dayEl.style.backgroundColor) {
@@ -63,4 +49,29 @@
 		});
 		calendar.render();
 	});
+	
+	var data = [
+		{
+	      title: 'Event1',
+	      start: '2021-03-04'
+	    },
+	    {
+	      title: 'Event1',
+	      start: '2021-03-04'
+	    },
+	    {
+	      title: 'Event1',
+	      start: '2021-04-04'
+	    }	
+	]
+
+
+	$(document).ready(function(){
+		calendar.addEventSource( data )
+	});
+	
+	//메뉴얼 : https://fullcalendar.io/docs/Calendar-addEventSource
+
+	
+
 </script>
