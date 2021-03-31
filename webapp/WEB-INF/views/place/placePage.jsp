@@ -96,15 +96,15 @@
 							<div style="text-align: justify;">
 								<strong>위치 </strong>
 							</div>
-							<div id="map" style="width:100%; height: 300px;">
+							<div id="map" style="width:100%; height: 250px;">
 								<script>
 								var map = new naver.maps.Map('map', {
-								    center: new naver.maps.LatLng(14140677.3536975,4508273.8431882),
+								    center: new naver.maps.LatLng(37.3595704, 127.105399),
 								    zoom: 15
 								});
 
 								var marker = new naver.maps.Marker({
-								    position: new naver.maps.LatLng(14140677.3536975,4508273.8431882),
+								    position: new naver.maps.LatLng(37.3595704, 127.105399),
 								    map: map
 								});
 								</script>
