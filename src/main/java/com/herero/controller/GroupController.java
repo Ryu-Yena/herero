@@ -1,5 +1,8 @@
 package com.herero.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.herero.sevice.GroupService;
 import com.herero.vo.EventVo;
@@ -34,6 +38,28 @@ public class GroupController {
 	}
 	
 	
+	
+	
+	// 이벤트리스트 가져오기
+	@ResponseBody
+	@RequestMapping(value="/getEventList", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<EventVo> writeEvent() {
+		System.out.println("getEventList");
+		
+		
+		List<EventVo> eventList = new ArrayList<EventVo>();
+		
+		for(int i=1; i<10; i++) {
+			EventVo vo = new EventVo();
+			vo.setTitle("이벤트"+i);
+			vo.setStart("2021-03-0"+i);
+			eventList.add(vo);
+		}
+		
+		
+		System.out.println(eventList);
+		return eventList;
+	}
 	
 	
 	// 이벤트 등록
