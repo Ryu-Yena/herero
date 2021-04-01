@@ -1,3 +1,4 @@
+
 @import url(font-awesome.min.css);
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 
@@ -10,6 +11,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -37,6 +39,7 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
+	
 
 /* Box Model */
 
@@ -1630,6 +1633,11 @@
 			-ms-transition: none !important;
 			transition: none !important;
 		}
+		
+	.datepicker{
+		color : #000;
+	}
+		
 
 /* Type */
 
@@ -1637,7 +1645,7 @@
 		background-color: #935d8c;
 		color: rgba(255, 255, 255, 0.65);
 	}
-
+	
 	body, input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 17pt;
@@ -1676,7 +1684,6 @@
 		transition: color 0.2s ease, border-bottom 0.2s ease;
 		text-decoration: none;
 		border-bottom: dotted 1px;
-		color: inherit;
 	}
 
 		a:hover {
@@ -2205,8 +2212,8 @@
 	}
 
 	label {
-		color: #ffffff;
 	}
+	
 
 	input[type="text"],
 	input[type="password"],
