@@ -38,7 +38,7 @@
 					<span class="login100-form-title p-b-49"> 로그인 </span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-						<span class="label-input100">Username</span> 
+						<span class="label-input100">ID</span> 
 						<input class="input100" type="text" name="user_id" placeholder="아이디를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
@@ -55,7 +55,7 @@
 					</c:if>
 
 					<div class="text-right p-t-8 p-b-21">
-						<a href="#"> 회원가입 </a> <a href="#">비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath}/user/joinForm"> 회원가입 </a> <a href="#">비밀번호 찾기</a>
 					</div>
 
 
@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="txt1 text-center p-t-54 p-b-20">
-						<span> 로그인 하는 다른 방법 </span>
+						<span> 로그인하는 다른 방법 </span>
 					</div>
 
 					<div class="flex-c-m">
