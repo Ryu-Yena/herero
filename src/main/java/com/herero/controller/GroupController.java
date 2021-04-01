@@ -108,6 +108,25 @@ public class GroupController {
 	}
 	
 	
+	// 이벤트 등록
+	@RequestMapping(value = "/addMeeting", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addMeeting(@ModelAttribute EventVo eventVo) {
+		System.out.println("/group/addMeeting");
+
+		System.out.println(eventVo);
+
+		groupService.addMeeting(eventVo);
+
+		return "redirect:/event/eventBoard";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	// 그룹 이벤트(일정) 참가
 	@RequestMapping(value = "/groupEventJoin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String groupEventJoin() {

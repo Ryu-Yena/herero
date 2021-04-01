@@ -206,4 +206,11 @@ public class GroupService {
 		
 
 	}
+	
+	/* 미팅 등록하기 */
+	public void addMeeting(EventVo eventVo) {
+		System.out.println("[groupService] addMeeting()");
+		
+
+	}
 }
