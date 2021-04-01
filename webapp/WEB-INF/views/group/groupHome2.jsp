@@ -11,6 +11,9 @@
    	   	
    	   	<!-- fullcalendar -->
    	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fullcalendar/main.css" />
+   	   	
+   	   	<!-- modal -->
+   	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />
 
 
 	
@@ -63,20 +66,10 @@
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/home.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/fullcalendar/main.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
 
 	</body>
-	
-	
-	<script type="text/javascript">
-	
-	
-	</script>
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

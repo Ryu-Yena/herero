@@ -65,11 +65,15 @@ public class GroupController {
 	
 	
 	// 이벤트 등록
-	@RequestMapping(value="/writeEvent", method = {RequestMethod.GET, RequestMethod.POST})
-	public void writeEvent(@ModelAttribute EventVo eventVo) {
-		System.out.println("/group/writeEvent");
+	@RequestMapping(value="/addEvent", method = {RequestMethod.GET, RequestMethod.POST})
+	public String addEvent(@ModelAttribute EventVo eventVo) {
+		System.out.println("/group/addEvent");
 		
 		System.out.println(eventVo);
+		
+		groupService.addEvent(eventVo);
+		
+		return "redirect:/group/groupHome2";
 	}
 	
 	

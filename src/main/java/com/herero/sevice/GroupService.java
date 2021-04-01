@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.herero.dao.GroupDao;
 import com.herero.vo.CategoryVo;
+import com.herero.vo.EventVo;
 import com.herero.vo.GImageVo;
 import com.herero.vo.GroupVo;
 import com.herero.vo.GroupmemberVo;
@@ -195,5 +196,14 @@ public class GroupService {
 		System.out.println("[groupService] getGHome");
 		
 		return groupDao.groupHome(no);
+	}
+	
+	
+	
+	/* 이벤트 등록하기 */
+	public void addEvent(EventVo eventVo) {
+		System.out.println("[groupService] addEvent()");
+		
+
 	}
 }

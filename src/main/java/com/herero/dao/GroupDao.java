@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.herero.vo.CategoryVo;
+import com.herero.vo.EventVo;
 import com.herero.vo.GImageVo;
 import com.herero.vo.GroupVo;
 import com.herero.vo.GroupmemberVo;
@@ -135,6 +136,14 @@ public class GroupDao {
 		System.out.println("[groupDao] groupHome");
 		
 		return sqlSession.selectOne("group.selectGroup", no);
+	}
+	
+	
+	
+	/* 이벤트등록 */
+	public void insertEvent(EventVo eventVo) {
+		System.out.println("[groupDao] insertEvent()");
+		
 	}
 	
 }

@@ -11,25 +11,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar.css" nonce="">
 
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 
-
 <style>
 
-#step-wrapper{margin-top: 60px;}
-#step-wrapper .sub_tit{font-size: 24px; font-weight:  600;}
-#step-wrapper .guide-step {list-style: none; padding: 0; margin-top: 50px;}
-#step-wrapper .guide-step:after{content:""; clear: both; display: block;}
-#step-wrapper .guide-step li{text-align: center; float: left; width:calc(18% + 6px);box-sizing:border-box;padding-left:20px;}
-#step-wrapper .guide-step li:first-child{width:calc(18% - 24px);}
-#step-wrapper .guide-step li:nth-child(n+2){background-image:url("/images/event/arrow.png");background-repeat:no-repeat; background-position: left  7.5px top 40px; background-size: 14px;}
-#step-wrapper .guide-step li .title{font-size: 18px; font-weight: 600; margin-top: 10px;}
-#step-wrapper .guide-step li .desc{margin-top: 10px; font-size: 12px;}
-#step-wrapper img {width : 50px;}
-#step-wrapper .guide-step .step-arrow {width : 0px;}
-#step-wrapper .guide-step .step-arrow img {width : 20px;}
+
 
 .eventinfo label {
 	display : block;
@@ -99,28 +87,7 @@
 			<section id="event" class="main">
 
 				<div id="step-wrapper">
-					<div class="sub_tit">진행상황</div>
-					<ul class="guide-step">
-						<li><img src="${pageContext.request.contextPath}/images/event/recruit.png">
-							<div class="title">인원모집중</div>
-							<div class="desc">현재 인원을 모집중입니다.</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/event/arrow.png"></li>
-						<li><img src="${pageContext.request.contextPath}/images/event/recruit-com.png">
-							<div class="title">모집완료</div>
-							<div class="desc">다음 단계까지 잠시만 기다려주세요.</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/event/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/event/place.png">
-							<div class="title">장소 선정중</div>
-							<div class="desc">일정 생성자가 장소를 예약중입니다.</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/event/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/event/pay.png">
-							<div class="title">결제중</div>
-							<div class="desc">장소 선정 완료되어 예약 결제중입니다.</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/event/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/event/fin.png">
-							<div class="title">결제완료</div>
-							<div class="desc">결제가 완료되었습니다.<br>모든 인원이 결제시 완료됩니다.</div></li>
-					</ul>
+					
 				</div>
 				
 				<!-- <div class="eventinfo">

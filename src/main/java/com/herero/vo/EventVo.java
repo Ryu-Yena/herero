@@ -31,6 +31,18 @@ public class EventVo {
 		this.title = title;
 		this.start = start;
 	}
+	
+	
+
+
+	public EventVo(int event_no, int group_no, String event_content, String title, String start) {
+		super();
+		this.event_no = event_no;
+		this.group_no = group_no;
+		this.event_content = event_content;
+		this.title = title;
+		this.start = start;
+	}
 
 
 	public int getEvent_no() {
