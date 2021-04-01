@@ -78,21 +78,8 @@ public class GroupController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	// 그룹 상세 (그룹원 전용)
+	// 그룹 상세 (그룹원 전용) 캘린더 화면
 	@RequestMapping(value = "/groupHome2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String groupHome2() {
 		System.out.println("/group/groupHome2");
@@ -100,21 +87,33 @@ public class GroupController {
 		return "group/groupHome2";
 
 	}
-
-	// 그룹 이벤트(일정) 생성
-	@RequestMapping(value = "/groupEventForm", method = { RequestMethod.GET, RequestMethod.POST })
+	
+	
+	
+	// 그룹 이벤트(일정) 게시판
+	@RequestMapping(value = "/eventBoard", method = { RequestMethod.GET, RequestMethod.POST })
 	public String groupEventForm() {
-		System.out.println("/group/groupEventForm");
+		System.out.println("/group/eventBoard");
 
-		return "group/groupEventForm";
+		return "event/eventBoard";
 	}
 
+	
+	// 그룹 이벤트(일정) 게시판읽기
+	@RequestMapping(value = "/eventRead", method = { RequestMethod.GET, RequestMethod.POST })
+	public String eventRead() {
+		System.out.println("/group/eventRead");
+
+		return "event/eventRead";
+	}
+	
+	
 	// 그룹 이벤트(일정) 참가
 	@RequestMapping(value = "/groupEventJoin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String groupEventJoin() {
 		System.out.println("/group/groupEventJoin");
 
-		return "group/groupEventJoin";
+		return "event/groupEventJoin";
 	}
 
 	// 그룹 이벤트(일정) 참가
@@ -122,7 +121,7 @@ public class GroupController {
 	public String groupEventPay() {
 		System.out.println("/group/groupEventPay");
 
-		return "group/groupEventPay";
+		return "event/groupEventPay";
 	}
 
 }

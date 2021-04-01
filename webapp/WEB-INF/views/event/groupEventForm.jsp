@@ -63,18 +63,18 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
-			<h1>[최강류우]JAVA STUDY</h1>
-			<p>
-				2021-03-12 || IT/컨텐츠<br /> built by <a href="#">@choikangryu</a>
-			</p>
+			<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg"	alt="" /></span>
+			<h1>${groupVo.group_name}</h1>
 		</header>
 
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
-				<li><a href="${pageContext.request.contextPath}/group/groupEventForm" class="active">Event</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/group/groupEventForm"
+					class="active">Event</a></li>
 				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 				<li><a href="#cta">Setting</a></li>
 			</ul>
@@ -86,10 +86,8 @@
 			<!-- Introduction -->
 			<section id="event" class="main">
 
-				<div id="step-wrapper">
-					
-				</div>
-				
+				<div id="step-wrapper"></div>
+
 				<!-- <div class="eventinfo">
 					<div class="eventname">
 						<label for="name">일정이름</label>
@@ -117,79 +115,83 @@
 				<div>
 					<textarea class="eventdetail" style="width: 300px; float:left; display: inline-block;">세부내용</textarea>
 				</div> -->
-				
-				
-	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 20%;">
-        <div class="wrapper wrapper--w680">
-            <div class="card card-4">
-                <div class="card-body">
-                    <div class="sub_tit">일정 만들기</div><br>
-                    <form method="POST">
-                        <div class="row row-space">
-                            <div class="col-6">
-                                <div class="input-group">
-                                    <label class="label">일정 이름</label>
-                                    <input class="input--style-4" type="text" name="first_name">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                        <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">일정 날짜</label>
-                                    <input class="input--style-4" type="text" id="datepicker">
-                                </div>
-                            </div>
-                        
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">일정 시간</label>
-                                    <div class="input-group-icon">
-                                        <select style="width: 275px;">
-                                        	<option selected>시간을선택해주세요</option>
-                                        	<option>07:00</option>
-                                        	<option>07:30</option>
-                                        	<option>08:00</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">인원모집 마감일</label>
-                                    <input class="input--style-4" type="text" id="datepicker">
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row row-space">
-                            <div class="col-6">
-                                <div class="input-group">
-                                    <label class="label">공지사항</label>
-                                    <div class="input-group-icon">
-                                        <textarea placeholder="내용을 입력하세요" style="width: 250%;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="bt-area" style="margin-left: 45%;">
-	                        <div class="">
-	                            <button class="btn btn--radius-2 btn-cre" type="submit" style="float:left; font-size: 14px; padding: 0 6px;">일정생성</button>
-	                        </div>
-	                         <div class="">
-	                            <button class="btn btn--radius-2 btn-can" type="submit" style="float:left; margin-left: 10px; font-size: 14px; padding: 0 13px;">취소</button>
-	                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-				
-				
-				
-				
+
+
+				<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins"
+					style="margin-left: 20%;">
+					<div class="wrapper wrapper--w680">
+						<div class="card card-4">
+							<div class="card-body">
+								<div class="sub_tit">일정 만들기</div>
+								<br>
+								<form method="POST">
+									<div class="row row-space">
+										<div class="col-6">
+											<div class="input-group">
+												<label class="label">일정 이름</label> <input
+													class="input--style-4" type="text" name="first_name">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label">일정 날짜</label> <input
+													class="input--style-4" type="text" id="datepicker">
+											</div>
+										</div>
+
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label">일정 시간</label>
+												<div class="input-group-icon">
+													<select style="width: 275px;">
+														<option selected>시간을선택해주세요</option>
+														<option>07:00</option>
+														<option>07:30</option>
+														<option>08:00</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label">인원모집 마감일</label> <input
+													class="input--style-4" type="text" id="datepicker">
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="row row-space">
+										<div class="col-6">
+											<div class="input-group">
+												<label class="label">공지사항</label>
+												<div class="input-group-icon">
+													<textarea placeholder="내용을 입력하세요" style="width: 250%;"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="bt-area" style="margin-left: 45%;">
+										<div class="">
+											<button class="btn btn--radius-2 btn-cre" type="submit"
+												style="float: left; font-size: 14px; padding: 0 6px;">일정생성</button>
+										</div>
+										<div class="">
+											<button class="btn btn--radius-2 btn-can" type="submit"
+												style="float: left; margin-left: 10px; font-size: 14px; padding: 0 13px;">취소</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
 
 				<div class="spotlight"></div>
 

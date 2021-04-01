@@ -9,7 +9,7 @@
 	<div id='calendar'></div>
 
 	<!-- modal -->
-	<div id="addEvent" class="modal fade bs-example-modal-sm" tabindex="-1"
+	<div id="addEventModal" class="modal fade bs-example-modal-sm" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -45,6 +45,29 @@
 					</div>
 				</form>
 				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		
+		
+	<!-- modal -->
+	<div id="eventReader" class="modal fade bs-example-modal-sm" tabindex="-1"
+		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+					<h4 class="modal-title">일정 추가하기</h4>
+				</div>
+
+
+				<!-- 캘린더 정보 읽어오기 -->
+
+
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
@@ -95,7 +118,7 @@
 					$("[name='event_date']").val(bdate);
 				});
 				
-				$("#addEvent").modal();
+				$("#addEventModal").modal();
 				
 				const gray = "#787878";
 				if (dateClickInfo.dayEl.style.backgroundColor) {
