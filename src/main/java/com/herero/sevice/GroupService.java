@@ -192,10 +192,10 @@ public class GroupService {
 	}
 	
 	/* 소모임 상세페이지 가져오기 */
-	public GroupVo getGHome(int no) {
+	public GroupVo getGHome(int group_no) {
 		System.out.println("[groupService] getGHome");
 		
-		return groupDao.groupHome(no);
+		return groupDao.groupHome(group_no);
 	}
 	
 	/* 소모임 그룹맴버 정보 가져오기 */

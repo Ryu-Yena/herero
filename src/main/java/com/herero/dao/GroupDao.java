@@ -138,10 +138,10 @@ public class GroupDao {
 	}
 	
 	/*소모임별 정보가져오기*/
-	public GroupVo groupHome(int no) {
+	public GroupVo groupHome(int group_no) {
 		System.out.println("[groupDao] groupHome");
 		
-		return sqlSession.selectOne("group.selectGroup", no);
+		return sqlSession.selectOne("group.selectGroup", group_no);
 	}
 	
 	/* 소모임 정보 가져오기 */

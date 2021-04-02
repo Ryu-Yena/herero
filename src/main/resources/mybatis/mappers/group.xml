@@ -360,19 +360,48 @@
 	<!-- 소모임별 정보 가져오기 -->
 	<select id="selectGroup" parameterType="int" resultType="com.herero.vo.GroupVo">
 		<![CDATA[
-			select g.group_no,
-    			   p.province,
-                   r.name,
-    			   c.category_name,
-                   g.group_name,
-                   g.group_url,
-    			   g.group_content content,
-    			   g.founded_date
-    		from groups g, province p, region r, category c
-			where g.province_no = p.province_no
-            and g.region_no = r.region_no
-            and g.category_no = c.category_no
-            and group_no = #{no}
+			select gtbl.group_no,
+			       province_no,
+			       province,
+			       region_no,
+			       name,
+			       category_no,
+			       category_name,
+			       group_name,
+			       group_url,
+			       group_content,
+			       founded_date,
+			       nickname,
+			       joined_date,
+			       master,
+			       member_cnt
+			from  (select  gs.group_no,
+			               gs.province_no,
+			               pv.province,
+			               gs.region_no,
+			               rg.name,
+			               gs.category_no,
+			               ct.category_name,
+			               gs.group_name,
+			               gs.group_url,
+			               gs.group_content,
+			               TO_CHAR(gs.founded_date,'YYYY-MM-DD') founded_date,
+			               gm.nickname,
+			               gm.joined_date,
+			               gm.master
+       			   from groups gs, province pv, region rg, category ct, groupmember gm
+			       where gs.province_no = pv.province_no
+			       and gs.region_no = rg.region_no
+			       and gs.category_no = ct.category_no
+			       and gs.group_no = gm.group_no
+			       and gm.master = '0'  --0 운영자  1 일반회원
+			       and gs.group_no = #{group_no}) gtbl,
+			      (select group_no, 
+			              count(*) member_cnt
+			       from groupmember
+			       group by group_no
+			       having group_no = 19) ctbl
+			where gtbl.group_no = ctbl.group_no
 		]]>
 	</select>
 	

@@ -21,6 +21,9 @@ public class GroupVo {
 	private String content;
 	private String founded_date;
 	private int member_cnt;
+	private String master;
+	private String nickname;
+	private String joined_date;
 
 	// 이미지 리스트(상세보기일때)
 	private List<GImageVo> gImageList;
@@ -36,8 +39,8 @@ public class GroupVo {
 
 	public GroupVo(int group_no, int province_no, String province, int region_no, String name, int category_no,
 			String category_name, String group_name, String group_url, String content, String founded_date,
-			int member_cnt, List<GImageVo> gImageList, GImageVo gImageMain, String gkeyword) {
-		super();
+			int member_cnt, String master, String nickname, String joined_date, List<GImageVo> gImageList,
+			GImageVo gImageMain, String gkeyword) {
 		this.group_no = group_no;
 		this.province_no = province_no;
 		this.province = province;
@@ -50,6 +53,9 @@ public class GroupVo {
 		this.content = content;
 		this.founded_date = founded_date;
 		this.member_cnt = member_cnt;
+		this.master = master;
+		this.nickname = nickname;
+		this.joined_date = joined_date;
 		this.gImageList = gImageList;
 		this.gImageMain = gImageMain;
 		this.gkeyword = gkeyword;
@@ -151,6 +157,30 @@ public class GroupVo {
 		this.member_cnt = member_cnt;
 	}
 
+	public String getMaster() {
+		return master;
+	}
+
+	public void setMaster(String master) {
+		this.master = master;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getJoined_date() {
+		return joined_date;
+	}
+
+	public void setJoined_date(String joined_date) {
+		this.joined_date = joined_date;
+	}
+
 	public List<GImageVo> getgImageList() {
 		return gImageList;
 	}
@@ -180,7 +210,9 @@ public class GroupVo {
 		return "GroupVo [group_no=" + group_no + ", province_no=" + province_no + ", province=" + province
 				+ ", region_no=" + region_no + ", name=" + name + ", category_no=" + category_no + ", category_name="
 				+ category_name + ", group_name=" + group_name + ", group_url=" + group_url + ", content=" + content
-				+ ", founded_date=" + founded_date + ", member_cnt=" + member_cnt + ", gImageList=" + gImageList
-				+ ", gImageMain=" + gImageMain + ", gkeyword=" + gkeyword + "]";
+				+ ", founded_date=" + founded_date + ", member_cnt=" + member_cnt + ", master=" + master + ", nickname="
+				+ nickname + ", joined_date=" + joined_date + ", gImageList=" + gImageList + ", gImageMain="
+				+ gImageMain + ", gkeyword=" + gkeyword + "]";
 	}
+
 }

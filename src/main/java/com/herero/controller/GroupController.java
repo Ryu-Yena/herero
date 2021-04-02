@@ -58,7 +58,6 @@ public class GroupController {
 				GroupVo groupVo = groupService.getGHome(no);
 				System.out.println(groupVo.toString());
 				model.addAttribute("groupVo", groupVo);
-				System.out.println(groupVo.toString());
 				
 				return "group/groupHome";
 				

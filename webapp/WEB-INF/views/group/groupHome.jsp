@@ -57,13 +57,16 @@
 									<div class="content" id="group-info">
 									
 										<p style="margin-bottom: 50px;">
-											소모임장 : <br>	
+											소모임장: ${groupVo.nickname}<br>	
 											개설일: ${groupVo.founded_date}<br>
 											분류: ${groupVo.category_name}<br>
 											지역: ${groupVo.province} ${groupVo.name}<br>
 											멤버수: ${groupVo.member_cnt}<br></p>
 										<button type="button" id="group-join">소모임 가입하기</button><br>
-										<span style="margin-right: 30px; font-size: 15px;" >문의하기</span><span style="font-size: 15px;">공유하기</span>
+										<!-- 
+										<span style="margin-right: 30px; font-size: 15px;" >문의하기</span>
+										<span style="font-size: 15px;">공유하기</span>
+										 -->
 									</div>
 								</div>
 							</section>
@@ -135,7 +138,7 @@
 	$("#group-join").on("click", function(){
 		console.log("클릭");
 		
-		if(${empty sessionScope.authUser}){
+		if(${empty authUser}){
 			alert("로그인이 필요한 서비스 입니다.");
 			window.location.replace("${pageContext.request.contextPath}/user/loginForm");
 		}else {
@@ -144,7 +147,6 @@
 		}
 		
 	});
- 
 
 </script>	
 
