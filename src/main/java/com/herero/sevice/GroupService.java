@@ -198,7 +198,15 @@ public class GroupService {
 	public GroupVo getGHome(int group_no) {
 		System.out.println("[groupService] getGHome");
 		
-		return groupDao.groupHome(group_no);
+		//그룹상세 정보 가져오기
+		GroupVo groupVo = groupDao.groupHome(group_no);
+		
+		//그룹의 이미지리스트 가져오기
+		List<GImageVo> gImageList =  groupDao.selectListGImage(group_no);
+		
+		groupVo.setgImageList(gImageList); //vo에 이미지 리스트를 추가한다.
+		
+		return groupVo;
 	}
 	
 	/* 소모임 그룹맴버 정보 가져오기 */
