@@ -8,6 +8,8 @@
 <body>
 	<div id='calendar'></div>
 
+
+	<!-- 이벤트 등록 모달 --> 
 	<!-- modal -->
 	<div id="addEventModal" class="modal fade bs-example-modal-sm" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -54,6 +56,7 @@
 	</div>
 	<!-- /.modal -->
 		
+	
 		
 	<!-- modal -->
 	<!-- <div id="eventReader" class="modal fade bs-example-modal-sm" tabindex="-1"
@@ -116,12 +119,14 @@
 				
 				var bdate = info.dateStr;
 				console.log(bdate);
-				
+				/*
 				$("#addEvent").on('show.bs.modal', function(){
 					console.log(bdate);
 					$("[name='event_date']").val(bdate);
 				});
+				*/
 				
+				$("[name='event_date']").val(bdate);
 				$("#addEventModal").modal();
 				
 				const gray = "#787878";
@@ -133,20 +138,19 @@
 			},
 			events: getEventList()
 
-			
-
-		/* events:[ {
-			title : 'Event1',
-			start : '2021-03-04'
-		}, {
-			title : 'Event1',
-			start : '2021-03-04'
-		}, {
-			no: 13
-			title : 'Event1',
-			start : '2021-04-04'
-		} ]
-		 */
+			/*
+			events:[ {
+				title : 'Event1',
+				start : '2021-03-04'
+			}, {
+				title : 'Event1',
+				start : '2021-03-04'
+			}, {
+				no: 13
+				title : 'Event1',
+				start : '2021-04-04'
+			} ]
+		 	*/
 		});
 		calendar.render();
 		
