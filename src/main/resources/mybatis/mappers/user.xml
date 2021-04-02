@@ -16,4 +16,17 @@
 	</select>
 	
 
+
+	<!-- 회원가입-->
+	<insert id="insertUser" parameterType="com.herero.vo.UserVo">
+		<![CDATA[
+			insert into users 
+			values (
+			    seq_user_no.nextval,
+			    #{user_id},
+			    #{user_password},
+			    #{user_name}
+			)
+		]]>
+	</insert>
 </mapper>

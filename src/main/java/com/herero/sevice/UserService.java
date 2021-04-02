@@ -18,5 +18,12 @@ public class UserService {
 		
 		return userDao.selectUser(userVo);
 	}
+	
+	//회원가입
+	public int join(UserVo userVo) {
+		System.out.println("UserService : join()");
+		
+		return userDao.insertUser(userVo);
+	}
 		
 }

@@ -19,4 +19,11 @@ public class UserDao {
 		
 		return sqlSession.selectOne("user.selectUser", userVo);
 	}
+	
+	//회원가입
+	public int insertUser(UserVo userVo) {
+		System.out.println("userDao : insertUser()");
+		
+		return sqlSession.insert("user.insertUser", userVo);
+	}
 }
