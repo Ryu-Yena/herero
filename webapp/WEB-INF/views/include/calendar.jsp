@@ -43,16 +43,20 @@
 						<button type="submit" class="btn btn-primary" id="btn_addEvent"
 							style="background: #4e6ffb;">등록</button>
 					</div>
+					<input type="text" name="group_no" value="${param.no}">
 				</form>
-				<!-- /.modal-content -->
+				
 			</div>
-			<!-- /.modal-dialog -->
+			<!-- /.modal-content -->
+			
 		</div>
-		<!-- /.modal -->
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 		
 		
 	<!-- modal -->
-	<div id="eventReader" class="modal fade bs-example-modal-sm" tabindex="-1"
+	<!-- <div id="eventReader" class="modal fade bs-example-modal-sm" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -65,13 +69,13 @@
 				</div>
 
 
-				<!-- 캘린더 정보 읽어오기 -->
+				캘린더 정보 읽어오기
 
 
 			</div>
-			<!-- /.modal-dialog -->
+			/.modal-dialog
 		</div>
-		<!-- /.modal -->
+		/.modal -->
 		
 		
 		
@@ -161,18 +165,20 @@
 	/* 데이터 가져오기 */
 	function getEventList() {
 		var data;
+		var group_no = "${param.no}";
+		
 		//데이타 전송
 		$.ajax({
 
 			url : "${pageContext.request.contextPath }/group/getEventList",
 			type : "post",
 			/* contentType : "application/json", */
-			/* data : {}, */
+			data : {no: group_no},
 
 			dataType : "json",
 			async : false,
 			success : function(getEventList) {
-				/* console.log(getEventList); */
+				console.log(getEventList); 
 				data = getEventList;
 			},
 			error : function(XHR, status, error) {

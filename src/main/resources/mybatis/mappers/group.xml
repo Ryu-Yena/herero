@@ -461,40 +461,78 @@
 	</select>
 	
 
-<!-- 소모임 이미지등록-->
-<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
-	<![CDATA[
-		insert into event
-        values (
-            SEQ_EVENT_NO.nextval,
-            #{group_no},
-            #{event_title},
-            #{evnet_date},
-            #{evnet_time},
-            #{event_deadline},
-            #{event_content}
-      )
-	]]>
-</insert>
 
 
-<!-- 소모임맴버 정보 가져오기-->
-<select id="selectGMember" parameterType="map" resultType="com.herero.vo.GroupmemberVo">
-	<![CDATA[
-		select  g.groupmember_no,
-       			g.user_no,
-       			g.group_no,
-       			g.nickname,
-       			g.joined_date,
-       			g.master,
-       			u.user_name,
-       			u.user_id
-		from groupMember g, users u
-		where g.user_no = u.user_no
-		and g.group_no = #{groupNo}
-		and g.user_no = #{authUserNo}
-	]]>
-</select>
+	<!-- 이벤트등록 운영자 직접등록-->
+	<insert id="insertEvent" parameterType="com.herero.vo.EventVo">
+		<![CDATA[
+			insert into event (event_no,
+							   group_no,
+							   event_title,
+							   event_date,
+							   event_content
+			)
+	        values (
+	            SEQ_EVENT_NO.nextval,
+	            #{group_no},
+	            #{event_title},
+	            #{event_date},
+	            #{event_content}
+	      	)
+		]]>
+	</insert>
+
+<!-- 
+	<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
+		<![CDATA[
+			insert into event
+	        values (
+	            SEQ_EVENT_NO.nextval,
+	            #{group_no},
+	            #{event_title},
+	            #{event_date},
+	            #{event_time},
+	            #{event_deadline},
+	            #{event_content}
+	      )
+		]]>
+	</insert>
+ -->
+
+	<select id="selectListEvent" parameterType="int" resultType="com.herero.vo.EventVo">
+		<![CDATA[
+			select  event_no,
+			        group_no,
+			        event_title,
+			        event_date,
+			        event_time,
+			        event_deadline,
+			        event_content,
+			        event_title title
+			from event
+			where group_no = #{group_no}
+		]]>
+	</select>
+
+
+
+	<!-- 소모임맴버 정보 가져오기-->
+	<select id="selectGMember" parameterType="map" resultType="com.herero.vo.GroupmemberVo">
+		<![CDATA[
+			select  g.groupmember_no,
+	       			g.user_no,
+	       			g.group_no,
+	       			g.nickname,
+	       			g.joined_date,
+	       			g.master,
+	       			u.user_name,
+	       			u.user_id
+			from groupMember g, users u
+			where g.user_no = u.user_no
+			and g.group_no = #{groupNo}
+			and g.user_no = #{authUserNo}
+		]]>
+	</select>
 
 	
 	

@@ -29,7 +29,7 @@ public class EventVo {
 		this.event_deadline = event_deadline;
 		this.event_content = event_content;
 		this.title = title;
-		this.start = start;
+		this.start = event_date;
 	}
 	
 	
@@ -41,7 +41,7 @@ public class EventVo {
 		this.group_no = group_no;
 		this.event_content = event_content;
 		this.title = title;
-		this.start = start;
+		this.start = event_date;
 	}
 
 
@@ -82,6 +82,7 @@ public class EventVo {
 
 	public void setEvent_date(String event_date) {
 		this.event_date = event_date;
+		this.start = event_date;
 	}
 
 

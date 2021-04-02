@@ -39,7 +39,7 @@
 	
 		<!-- Wrapper -->
 			<div id="wrapper">
-
+				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 				<!-- Header -->
 					<header id="header" class="alt">
 						<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>

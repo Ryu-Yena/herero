@@ -220,17 +220,23 @@ public class GroupService {
 	
 	
 	
-	/* 이벤트 등록하기 */
+	/* 이벤트등록 운영자 직접등록*/
 	public void addEvent(EventVo eventVo) {
 		System.out.println("[groupService] addEvent()");
-		
-
+		groupDao.insertEvent(eventVo);
 	}
 	
-	/* 미팅 등록하기 */
+	/* 이벤트등록 시스템등록*/
 	public void addMeeting(EventVo eventVo) {
 		System.out.println("[groupService] addMeeting()");
 		
+	}
+	
+	
+	//이벤트 리스트 가져오기
+	public List<EventVo> getListEvent(int group_no) {
+		System.out.println("[groupService] getListEvent()");
+		return groupDao.selectListEvent(group_no);
 	}
 	
 	

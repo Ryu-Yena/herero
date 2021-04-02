@@ -87,7 +87,7 @@
 								<img src="${pageContext.request.contextPath}/upload/${groupVo.gImageMain.image_name}"	alt="" /></span>
 							<h5>${groupVo.group_name}</h5>
 							<p align="justify" style="font-size: 13px;"> 
-							    분야: ${groupVo.category_name}<br>
+							    분야: ${groupVo.category_name} <br>
 								지역: ${groupVo.province} ${groupVo.name}<br>
 								맴버수: ${groupVo.member_cnt}명</p>
 							<ul class="actions special">

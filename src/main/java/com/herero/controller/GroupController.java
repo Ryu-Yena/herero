@@ -77,26 +77,14 @@ public class GroupController {
 	// 이벤트리스트 가져오기
 	@ResponseBody
 	@RequestMapping(value="/getEventList", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<EventVo> writeEvent() {
+	public List<EventVo> writeEvent(@RequestParam("no") int no) {
 		System.out.println("getEventList");
 		
-		
-		List<EventVo> eventList = new ArrayList<EventVo>();
-		
-		for(int i=1; i<10; i++) {
-			EventVo vo = new EventVo();
-			vo.setTitle("이벤트"+i);
-			vo.setStart("2021-03-0"+i);
-			eventList.add(vo);
-		}
-		
-	
-		System.out.println(eventList);
-		return eventList;
+		return groupService.getListEvent(no);
 	}
 	
 	
-	// 이벤트 등록
+	//* 이벤트등록 운영자 직접등록*/
 	@RequestMapping(value="/addEvent", method = {RequestMethod.GET, RequestMethod.POST})
 	public String addEvent(@ModelAttribute EventVo eventVo) {
 		System.out.println("/group/addEvent");
@@ -105,7 +93,20 @@ public class GroupController {
 		
 		groupService.addEvent(eventVo);
 		
-		return "redirect:/group/groupHome2";
+		return "redirect:/group/groupHome2?no="+eventVo.getGroup_no();
+	}
+	
+	
+	/* 이벤트등록 시스템등록*/
+	@RequestMapping(value = "/addMeeting", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addMeeting(@ModelAttribute EventVo eventVo) {
+		System.out.println("/group/addMeeting");
+
+		System.out.println(eventVo);
+
+		groupService.addMeeting(eventVo);
+
+		return "redirect:/event/eventBoard";
 	}
 	
 	
@@ -140,17 +141,7 @@ public class GroupController {
 	}
 	
 	
-	// 이벤트 등록
-	@RequestMapping(value = "/addMeeting", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addMeeting(@ModelAttribute EventVo eventVo) {
-		System.out.println("/group/addMeeting");
-
-		System.out.println(eventVo);
-
-		groupService.addMeeting(eventVo);
-
-		return "redirect:/event/eventBoard";
-	}
+	
 	
 	
 	
