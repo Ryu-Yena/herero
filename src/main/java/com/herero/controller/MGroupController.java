@@ -102,8 +102,9 @@ public class MGroupController {
 
 		//로그인 사용자만 가입폼에 접근 가능
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		int userNo = authUser.getUser_no();
+		
 		if(authUser != null) {
+			int userNo = authUser.getUser_no();
 			groupService.addGroup(groupVo, mainImg, files, userNo); 
 			
 			return "redirect:/group/groupMain";

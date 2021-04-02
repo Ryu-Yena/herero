@@ -110,10 +110,14 @@ public class GroupDao {
 	}
 	
 	/* 소모임 최신리스트 */
-	public List<GroupVo> selectLastlyGroupList(){
+	public List<GroupVo> selectLastlyGroupList(int startNum, int endNum){
 		System.out.println("[GroupDao.selectLastlyGroupList()]");
+		Map<String, Integer> rnMap = new HashMap<String, Integer>();
+		rnMap.put("startNum", startNum);
+		rnMap.put("endNum", endNum);
 		
-		return sqlSession.selectList("group.selectLastlyGroupList");
+		System.out.println(rnMap);
+		return sqlSession.selectList("group.selectLastlyGroupList", rnMap);
 	}
 	
 	

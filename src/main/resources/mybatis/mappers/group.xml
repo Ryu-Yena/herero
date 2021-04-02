@@ -289,7 +289,7 @@
 	
 	
 	<!-- 소모임 메인 최신리스트 -->
-	<select id="selectLastlyGroupList" resultType="com.herero.vo.GroupVo">
+	<select id="selectLastlyGroupList" parameterType="map" resultType="com.herero.vo.GroupVo">
 		<![CDATA[
 			select  rt.rn,
 			        rt.group_no,
@@ -351,8 +351,8 @@
 			            where gtbl.group_no = ctbl.group_no(+)
 			            order by gtbl.founded_date desc ) ot
 			     ) rt 
-			where rt.rn >=1
-			and   rt.rn <=2
+			where rt.rn >=#{startNum}
+			and   rt.rn <=#{endNum}
 		]]>
 	</select>
 	

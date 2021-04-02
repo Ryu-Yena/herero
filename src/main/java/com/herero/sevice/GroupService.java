@@ -160,7 +160,7 @@ public class GroupService {
 		}
 		
 		//최신 리스트 최신글 2개
-		List<GroupVo> lastlyGroupList = groupDao.selectLastlyGroupList();
+		List<GroupVo> lastlyGroupList = groupDao.selectLastlyGroupList(1, 2);  //최신글 1번부터 2번까지
 		for(int i=0; i<lastlyGroupList.size(); i++) {
 			int group_no = lastlyGroupList.get(i).getGroup_no();
 			lastlyGroupList.get(i).setgImageMain(groupDao.selectGImageMain(group_no));
@@ -207,6 +207,8 @@ public class GroupService {
 	
 	
 	
+	
+	
 	/* 이벤트 등록하기 */
 	public void addEvent(EventVo eventVo) {
 		System.out.println("[groupService] addEvent()");
@@ -219,4 +221,25 @@ public class GroupService {
 		System.out.println("[groupService] addMeeting()");
 		
 	}
+	
+	
+	
+	
+	
+	/* 메인페이지하단 최신글 4개 가져오기 */
+	public List<GroupVo> getLastlyGroupList() {
+		System.out.println("[groupService] getLastlyGroupList()");
+		
+		List<GroupVo> lastlyGroupList = groupDao.selectLastlyGroupList(1, 4);  //최신글 1번부터 2번까지
+		for(int i=0; i<lastlyGroupList.size(); i++) {
+			int group_no = lastlyGroupList.get(i).getGroup_no();
+			lastlyGroupList.get(i).setgImageMain(groupDao.selectGImageMain(group_no));
+		}
+		
+		return lastlyGroupList;
+		
+	}
+	
+	
+	
 }
