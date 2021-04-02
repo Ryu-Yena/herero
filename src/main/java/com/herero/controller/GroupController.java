@@ -184,4 +184,19 @@ public class GroupController {
 		return "event/groupEventPay";
 	}
 
+	
+	// 소모임 가입
+	@RequestMapping(value = "/groupJoin", method = { RequestMethod.GET, RequestMethod.POST })
+	public String groupJoin(@ModelAttribute GroupmemberVo groupmemberVo, HttpSession session) {
+		System.out.println("/group/groupJoin");
+		System.out.println(groupmemberVo);
+		
+		//세션에 있는(로그인한 사용자) user_no를 넣어준다
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		groupmemberVo.setUser_no(authUser.getUser_no()); 
+		
+		groupService.groupJoin(groupmemberVo);
+		return "redirect:/group/groupHome?no="+groupmemberVo.getGroup_no();
+	}
+	
 }

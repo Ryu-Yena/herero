@@ -11,6 +11,9 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.herero.dao.GroupDao;
@@ -241,5 +244,17 @@ public class GroupService {
 	}
 	
 	
+	
+	// 소모임 가입
+	public String groupJoin(GroupmemberVo groupmemberVo) {
+		System.out.println("[groupService] groupJoin()");
+		System.out.println(groupmemberVo);
+		
+		groupmemberVo.setMaster("1");  //일반회원 표시
+		
+		groupDao.insertGroupMember(groupmemberVo);
+		
+		return "event/groupEventPay";
+	}
 	
 }
