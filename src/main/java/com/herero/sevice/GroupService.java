@@ -198,6 +198,13 @@ public class GroupService {
 		return groupDao.groupHome(no);
 	}
 	
+	/* 소모임 그룹맴버 정보 가져오기 */
+	public GroupmemberVo getgMember(int no, int authUserNo) {
+		System.out.println("[groupService] getgMember");
+		
+		return groupDao.selectGMember(no, authUserNo);
+	}
+	
 	
 	
 	/* 이벤트 등록하기 */
@@ -211,6 +218,5 @@ public class GroupService {
 	public void addMeeting(EventVo eventVo) {
 		System.out.println("[groupService] addMeeting()");
 		
-
 	}
 }

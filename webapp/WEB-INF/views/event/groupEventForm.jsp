@@ -10,10 +10,9 @@
 <link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar.css" nonce="">
-
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<link href="${pageContext.servletContext.contextPath}/resources/jquery/jquery-ui.css?version=1.3" rel="stylesheet" type="text/css" media="screen">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />   	
 
 <style>
 
@@ -32,8 +31,6 @@
 	width:300px;
 }
 
-
-
 #eventTime{
 	display: inline-block;
 	width:300px;
@@ -45,11 +42,11 @@
 
 .sub_tit {font-size: 24px; font-weight:  600;}
 
-.bt-area .btn-cre{
+.btn-cre{
 	background-color : #D95829;
 }
 
-.bt-area .btn-can{
+.btn-can{
 	background-color : #1B1C26;
 }
 
@@ -63,7 +60,9 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg"	alt="" /></span>
+			<span class="logo"><img
+				src="${pageContext.request.contextPath}/images/icons/logo.svg"
+				alt="" /></span>
 			<h1>${groupVo.group_name}</h1>
 		</header>
 
@@ -86,117 +85,81 @@
 			<!-- Introduction -->
 			<section id="event" class="main">
 
-				<div id="step-wrapper"></div>
-
-				<!-- <div class="eventinfo">
-					<div class="eventname">
-						<label for="name">일정이름</label>
-						<input id="namebox" type="text">
-					</div>
-					<div class="eventdate">
-						<label for="name">일정날짜</label>
-						<input type="text" id="datepicker">
-					</div>
-					<div class="eventname">
-						<label for="name">일정시간</label>
-						<select id="eventTime">
-							<option selected>시간설정</option>
-							<option>07:00</option>
-							<option>07:30</option>
-							<option>08:00</option>
-							<option>08:30</option>
-						</select>
-					</div>
-					<div class="eventdate">
-						<label for="name">인원모집마감일</label>
-						<input type="text" id="datepicker">
-					</div>
+				<div id="step-wrapper">
+					<div class="sub_tit">진행상황</div>
+					<ul class="guide-step">
+						<li><img src="${pageContext.request.contextPath}/images/guide/">
+							<div class="title">인원모집중</div></li>
+						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
+						<li><img src="${pageContext.request.contextPath}/images/guide/">
+							<div class="title">모집완료</div></li>
+						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
+						<li><img src="${pageContext.request.contextPath}/images/guide/">
+							<div class="title">장소 선정중</div></li>
+						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
+						<li><img src="${pageContext.request.contextPath}/images/guide/">
+							<div class="title">결제중</div></li>
+						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
+						<li><img src="${pageContext.request.contextPath}/images/guide/">
+							<div class="title">결제완료</div></li>
+					</ul>
 				</div>
-				<div>
-					<textarea class="eventdetail" style="width: 300px; float:left; display: inline-block;">세부내용</textarea>
-				</div> -->
 
-
+			<form method="POST" action="${pageContext.request.contextPath }/group/addMeeting">
 				<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins"
 					style="margin-left: 20%;">
 					<div class="wrapper wrapper--w680">
-						<div class="card card-4">
-							<div class="card-body">
-								<div class="sub_tit">일정 만들기</div>
-								<br>
-								<form method="POST">
-									<div class="row row-space">
-										<div class="col-6">
-											<div class="input-group">
-												<label class="label">일정 이름</label> <input
-													class="input--style-4" type="text" name="first_name">
-											</div>
-										</div>
-									</div>
-									<div class="row row-space">
-										<div class="col-2">
-											<div class="input-group">
-												<label class="label">일정 날짜</label> <input
-													class="input--style-4" type="text" id="datepicker">
-											</div>
-										</div>
-
-										<div class="col-2">
-											<div class="input-group">
-												<label class="label">일정 시간</label>
-												<div class="input-group-icon">
-													<select style="width: 275px;">
-														<option selected>시간을선택해주세요</option>
-														<option>07:00</option>
-														<option>07:30</option>
-														<option>08:00</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-2">
-											<div class="input-group">
-												<label class="label">인원모집 마감일</label> <input
-													class="input--style-4" type="text" id="datepicker">
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="row row-space">
-										<div class="col-6">
-											<div class="input-group">
-												<label class="label">공지사항</label>
-												<div class="input-group-icon">
-													<textarea placeholder="내용을 입력하세요" style="width: 250%;"></textarea>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="bt-area" style="margin-left: 45%;">
-										<div class="">
-											<button class="btn btn--radius-2 btn-cre" type="submit"
-												style="float: left; font-size: 14px; padding: 0 6px;">일정생성</button>
-										</div>
-										<div class="">
-											<button class="btn btn--radius-2 btn-can" type="submit"
-												style="float: left; margin-left: 10px; font-size: 14px; padding: 0 13px;">취소</button>
-										</div>
-									</div>
-								</form>
+						<div class="sub_tit">일정 만들기</div>
+						<br>
+					
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label class="form-text">일정 이름</label> <input
+										class="input--style-4" type="text" name="event_title">
+								</div>
 							</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label class="form-text">일정 날짜</label> <input type="text"
+								id="datePicker" name="event_date" class="form-control" value="">
+						</div>
+
+						<div class="form-group col-md-4">
+							<label class="form-text">일정 시간</label> <input type="text"
+								name="event_time" class="timepicker">
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label class="form-text">마감일</label> <input type="text"
+								id="datePicker2" name="event_deadline" class="form-control" value="">
+						</div>
+					</div>
+					
+					<div class="row">
+					<div class="form-group col-md-8">
+							<label class="form-text">공지사항</label>
+							<textarea class="form-control" name="event_content"></textarea>
+					</div>
+					</div>
+					<br>
+					<div class="bt-area col-md-offset-3">
+						<div class="">
+							<button class="btn btn--radius-2 btn-cre" type="submit"
+								style="float: left;">등록</button>
+						</div>
+						<div class="">
+							<button class="btn btn--radius-2 btn-can" type="button"
+								style="float: left; margin-left: 10px;">취소</button>
+						</div>
+					</div>
+					
+					<br>
 				</div>
-
-
-
-
-
-				<div class="spotlight"></div>
-
+			</form>
 			</section>
-
 		</div>
 
 		<!-- Footer -->
@@ -211,64 +174,86 @@
 	<script src="${pageContext.request.contextPath}/assets/js/skel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/home.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
-
-
-	<script>
-		$(function() {
-			//모든 datepicker에 대한 공통 옵션 설정
-			$.datepicker
-					.setDefaults({
-						dateFormat : 'yy-mm-dd' //Input Display Format 변경
-						,
-						showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-						,
-						showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
-						,
-						changeYear : false //콤보박스에서 년 선택 가능
-						,
-						changeMonth : false //콤보박스에서 월 선택 가능                
-						,
-						showOn : "input" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-						,
-						buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-						,
-						buttonImageOnly : true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-						,
-						buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
-						,
-						yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
-						,
-						monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7',
-								'8', '9', '10', '11', '12' ] //달력의 월 부분 텍스트
-						,
-						monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
-								'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
-						,
-						dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
-						,
-						dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
-								'토요일' ] //달력의 요일 부분 Tooltip 텍스트
-						,
-						minDate : "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-						,
-						maxDate : "+2Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
-					});
-
-			//input을 datepicker로 선언
-			$("#datepicker").datepicker();
-			$("#datepicker2").datepicker();
-
-			//From의 초기값을 오늘 날짜로 설정
-			$('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-			//To의 초기값을 내일로 설정
-			$('#datepicker2').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-		});
-	</script>
+	<script src="${pageContext.request.contextPath}/assets/fullcalendar/main.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap-datepicker.ko.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js//jquery-1.8.3.min.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/jquery/jquery-ui.js?version=1.3"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
 </body>
+
+
+<script type="text/javascript">
+
+	$(function() {
+		$('#datePicker').datepicker({
+			format : "yyyy년mm월dd일", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+			startDate : '-1y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+			endDate : '+1y', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+			autoclose : true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+			calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
+			clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
+			datesDisabled : [],//선택 불가능한 일 설정 하는 배열 위에 있는 format 과 형식이 같아야함.
+			daysOfWeekDisabled : [], //선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
+			daysOfWeekHighlighted : [], //강조 되어야 하는 요일 설정
+			disableTouchKeyboard : false, //모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
+			immediateUpdates : false, //사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
+			multidate : false, //여러 날짜 선택할 수 있게 하는 옵션 기본값 :false 
+			multidateSeparator : "  /  ", //여러 날짜를 선택했을 때 사이에 나타나는 글짜 2019-05-01,2019-06-01
+			templates : {
+				leftArrow : '&laquo;',
+				rightArrow : '&raquo;'
+			}, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징 
+			showWeekDays : true,// 위에 요일 보여주는 옵션 기본값 : true
+			todayHighlight : true, //오늘 날짜에 하이라이팅 기능 기본값 :false 
+			toggleActive : true, //이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
+			weekStart : 0,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
+			language : "ko" //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+
+		});//datepicker end
+	});//ready end
+
+	$(function() {
+		$('#datePicker2').datepicker({
+			format : "yyyy년mm월dd일", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+			startDate : '-1y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+			endDate : '+1y', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+			autoclose : true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+			calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
+			clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
+			datesDisabled : [],//선택 불가능한 일 설정 하는 배열 위에 있는 format 과 형식이 같아야함.
+			daysOfWeekDisabled : [], //선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
+			daysOfWeekHighlighted : [], //강조 되어야 하는 요일 설정
+			disableTouchKeyboard : false, //모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
+			immediateUpdates : false, //사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
+			multidate : false, //여러 날짜 선택할 수 있게 하는 옵션 기본값 :false 
+			multidateSeparator : "  /  ", //여러 날짜를 선택했을 때 사이에 나타나는 글짜 2019-05-01,2019-06-01
+			templates : {
+				leftArrow : '&laquo;',
+				rightArrow : '&raquo;'
+			}, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징 
+			showWeekDays : true,// 위에 요일 보여주는 옵션 기본값 : true
+			todayHighlight : true, //오늘 날짜에 하이라이팅 기능 기본값 :false 
+			toggleActive : true, //이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
+			weekStart : 0,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
+			language : "ko" //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+
+		});//datepicker end
+	});//ready end
+
+	$('.timepicker').timepicker({
+		timeFormat : 'p h:mm',
+		interval : 60,
+		minTime : '09',
+		maxTime : '11:00pm',
+		defaultTime : '12',
+		startTime : '00:00',
+		dynamic : false,
+		dropdown : true,
+		scrollbar : true
+	});
+</script>
 </html>

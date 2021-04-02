@@ -3,6 +3,8 @@ package com.herero.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.herero.sevice.GroupService;
 import com.herero.vo.EventVo;
 import com.herero.vo.GroupVo;
+import com.herero.vo.GroupmemberVo;
+import com.herero.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/group")
@@ -25,21 +29,52 @@ public class GroupController {
 
 	// 그룹 상세 (비그룹원)
 	@RequestMapping(value = "/groupHome", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupHome(@RequestParam("no") int no, Model model) {
+	public String groupHome(@RequestParam("no") int no, Model model, HttpSession session, UserVo userVo, GroupmemberVo groupMemberVo) {
 		System.out.println("/group/groupHome");
 		
-		GroupVo groupVo = groupService.getGHome(no);
+		//세션 정보 가져오기
+		UserVo authUser= (UserVo)session.getAttribute("authUser");
 		
-		model.addAttribute("groupVo", groupVo);
-		System.out.println(groupVo.toString());
-
-		return "group/groupHome";
-
+			
+		//session null이면 > grouphome 보이고
+		//session이 있으면 > 로그인 된 상태
+		if(authUser == null) {
+			System.out.println("로그인 안된 상태");
+			
+			return "redirect:/user/loginForm";
+		} else {//그룹넘버 꺼내고 -> 회원식별번호 받아오고 -> DB에 조회
+			System.out.println("로그인된 회원");
+			
+			//세션 user_no 가져오기
+			int authUserNo = authUser.getUser_no();
+			
+			
+			//그룹 회원정보 가져오기
+			GroupmemberVo groupmemberVo = groupService.getgMember(no,authUserNo);
+			
+			if(groupmemberVo == null) {//2. 없으면 > grouphome 보내기3
+				System.out.println("가입 전 회원");
+				
+				GroupVo groupVo = groupService.getGHome(no);
+				
+				model.addAttribute("groupVo", groupVo);
+				System.out.println(groupVo.toString());
+				
+				return "group/groupHome";
+				
+			}else {//1. 있으면 > grouphome2 보내고
+				System.out.println("소모임 회원");
+				
+				GroupVo groupVo = groupService.getGHome(no);
+				
+				model.addAttribute("groupVo", groupVo);
+				System.out.println(groupVo.toString());
+				return "group/groupHome2";
+			}
+		}
+	
 	}
-	
-	
-	
-	
+
 	// 이벤트리스트 가져오기
 	@ResponseBody
 	@RequestMapping(value="/getEventList", method = {RequestMethod.GET, RequestMethod.POST})
@@ -56,9 +91,7 @@ public class GroupController {
 			eventList.add(vo);
 		}
 		
-		
-		
-		
+	
 		System.out.println(eventList);
 		return eventList;
 	}
@@ -92,7 +125,7 @@ public class GroupController {
 	
 	// 그룹 이벤트(일정) 게시판
 	@RequestMapping(value = "/eventBoard", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupEventForm() {
+	public String groupEventBoard() {
 		System.out.println("/group/eventBoard");
 
 		return "event/eventBoard";
@@ -124,7 +157,16 @@ public class GroupController {
 	
 	
 	
-	
+	// 그룹 이벤트(일정) 참가
+	@RequestMapping(value = "/groupEventForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String groupEventForm() {
+		System.out.println("/group/groupEventForm");
+		
+		
+		//그룹넘버 넘기기 > 세션이랑 
+
+		return "event/groupEventForm";
+	}
 	
 	
 	// 그룹 이벤트(일정) 참가

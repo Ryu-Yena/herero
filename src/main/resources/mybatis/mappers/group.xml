@@ -95,7 +95,7 @@
 		<![CDATA[
 			insert into groupmember
 			values (
-				#{groupmember_no},
+				seq_groupmember_no.nextval,
 			    #{user_no},
 			    #{group_no},
 			    #{nickname},
@@ -432,7 +432,40 @@
 	</select>
 	
 
+<!-- 소모임 이미지등록-->
+<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
+	<![CDATA[
+		insert into event
+        values (
+            SEQ_EVENT_NO.nextval,
+            #{group_no},
+            #{event_title},
+            #{evnet_date},
+            #{evnet_time},
+            #{event_deadline},
+            #{event_content}
+      )
+	]]>
+</insert>
 
+
+<!-- 소모임맴버 정보 가져오기-->
+<select id="selectGMember" parameterType="map" resultType="com.herero.vo.GroupmemberVo">
+	<![CDATA[
+		select  g.groupmember_no,
+       			g.user_no,
+       			g.group_no,
+       			g.nickname,
+       			g.joined_date,
+       			g.master,
+       			u.user_name,
+       			u.user_id
+		from groupMember g, users u
+		where g.user_no = u.user_no
+		and g.group_no = #{groupNo}
+		and g.user_no = #{authUserNo}
+	]]>
+</select>
 
 	
 	

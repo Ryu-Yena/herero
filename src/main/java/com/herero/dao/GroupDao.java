@@ -1,6 +1,8 @@
 package com.herero.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,11 +140,27 @@ public class GroupDao {
 		return sqlSession.selectOne("group.selectGroup", no);
 	}
 	
+	/* 소모임 정보 가져오기 */
+	public GroupmemberVo selectGMember(int no, int authUserNo) {
+		System.out.println("[groupDao] selectGMember");
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("groupNo", no);
+		map.put("authUserNo", authUserNo);
+		return sqlSession.selectOne("group.selectGMember", map);
+	}
 	
 	
 	/* 이벤트등록 */
 	public void insertEvent(EventVo eventVo) {
 		System.out.println("[groupDao] insertEvent()");
+		
+	}
+	
+	/* 이벤트등록 */
+	public void insertMeeting(EventVo eventVo) {
+		System.out.println("[groupDao] insertMeeting()");
+		System.out.println(eventVo);
 		
 	}
 	
