@@ -3317,7 +3317,7 @@
 			#main input[type="button"]:hover,
 			#main button:hover,
 			#main .button:hover {
-				background-color: rgba(222, 222, 222, 0.25);
+				/* background-color: rgba(222, 222, 222, 0.25); */
 			}
 
 			#main input[type="submit"]:active,
@@ -3325,7 +3325,7 @@
 			#main input[type="button"]:active,
 			#main button:active,
 			#main .button:active {
-				background-color: rgba(222, 222, 222, 0.5);
+				/* background-color: rgba(222, 222, 222, 0.5); */
 			}
 
 			#main input[type="submit"].icon:before,
@@ -3333,7 +3333,7 @@
 			#main input[type="button"].icon:before,
 			#main button.icon:before,
 			#main .button.icon:before {
-				color: rgba(99, 99, 99, 0.25);
+				/* color: rgba(99, 99, 99, 0.25); */
 			}
 
 			#main input[type="submit"].special,
