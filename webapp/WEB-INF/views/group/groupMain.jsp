@@ -31,7 +31,7 @@
 		
 		<section id="Main" class="container">
 			<section class="box special">
-				<a href="${pageContext.request.contextPath}/group/groupForm" class="button small primary">소모임 만들기</a> <br> <br>
+				<a href="${pageContext.request.contextPath}/mgroup/groupForm" class="button small primary">소모임 만들기</a> <br> <br>
 
 				<div class="row">
 					<div class="col-6 col-12-narmal">
