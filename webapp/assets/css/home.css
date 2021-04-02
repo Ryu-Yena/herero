@@ -3685,3 +3685,24 @@
 			}
 
 		}
+		
+		
+		
+		
+/**********************************
+* groupHome 에서 사용 
+***********************************/	
+
+/* 소모임 가입 모달창 */	
+#modal-group-join .modal-title,
+#modal-group-join span{
+	color: #000000 !important;
+}
+
+#modal-group-join .modal-body > p{
+	color: #000000;
+}
+
+#modal-group-join [name] {
+	border: 1px solid #000000;
+}

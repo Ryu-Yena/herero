@@ -56,7 +56,7 @@ public class GroupController {
 				System.out.println("가입 전 회원");
 				
 				GroupVo groupVo = groupService.getGHome(no);
-				
+				System.out.println(groupVo.toString());
 				model.addAttribute("groupVo", groupVo);
 				System.out.println(groupVo.toString());
 				
