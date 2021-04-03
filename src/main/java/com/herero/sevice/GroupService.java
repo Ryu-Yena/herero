@@ -203,7 +203,6 @@ public class GroupService {
 		
 		//그룹의 이미지리스트 가져오기
 		List<GImageVo> gImageList =  groupDao.selectListGImage(group_no);
-		
 		groupVo.setgImageList(gImageList); //vo에 이미지 리스트를 추가한다.
 		
 		return groupVo;

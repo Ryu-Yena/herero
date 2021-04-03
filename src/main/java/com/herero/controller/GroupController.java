@@ -93,7 +93,7 @@ public class GroupController {
 		
 		groupService.addEvent(eventVo);
 		
-		return "redirect:/group/groupHome2?no="+eventVo.getGroup_no();
+		return "redirect:/group/groupHome?no="+eventVo.getGroup_no();
 	}
 	
 	
@@ -108,19 +108,6 @@ public class GroupController {
 
 		return "redirect:/event/eventBoard";
 	}
-	
-	
-	
-
-	// 그룹 상세 (그룹원 전용) 캘린더 화면
-	@RequestMapping(value = "/groupHome2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupHome2() {
-		System.out.println("/group/groupHome2");
-
-		return "group/groupHome2";
-
-	}
-	
 	
 	
 	// 그룹 이벤트(일정) 게시판

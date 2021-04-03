@@ -37,7 +37,7 @@ public class MGroupController {
 		//로그인 사용자만 가입폼에 접근 가능
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser != null) {
-			return "group/groupForm";
+			return "mgroup/groupForm";
 		}else {
 			return "redirect:/user/loginForm";
 		}
