@@ -33,15 +33,18 @@ public class EventVo {
 	}
 	
 	
+	
 
 
-	public EventVo(int event_no, int group_no, String event_content, String title, String start) {
-		super();
+	public EventVo(int event_no, int group_no, String event_title, String event_date, String event_time,
+			String event_deadline, String event_content) {
 		this.event_no = event_no;
 		this.group_no = group_no;
+		this.event_title = event_title;
+		this.event_date = event_date;
+		this.event_time = event_time;
+		this.event_deadline = event_deadline;
 		this.event_content = event_content;
-		this.title = title;
-		this.start = event_date;
 	}
 
 
