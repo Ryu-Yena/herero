@@ -181,13 +181,21 @@ public class GroupController {
 	public String groupJoin(@ModelAttribute GroupmemberVo groupmemberVo, HttpSession session) {
 		System.out.println("/group/groupJoin");
 		System.out.println(groupmemberVo);
+		//세션 정보 가져오기
+		UserVo authUser= (UserVo)session.getAttribute("authUser");
 		
-		//세션에 있는(로그인한 사용자) user_no를 넣어준다
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		groupmemberVo.setUser_no(authUser.getUser_no()); 
+		if(authUser == null) {
+			System.out.println("로그인 안된 상태");
+			
+			return "redirect:/user/loginForm";
+		} else {
+			//세션에 있는(로그인한 사용자) user_no를 넣어준다
+			groupmemberVo.setUser_no(authUser.getUser_no()); 
+			
+			groupService.groupJoin(groupmemberVo);
+			return "redirect:/group/groupHome?no="+groupmemberVo.getGroup_no();
+		}
 		
-		groupService.groupJoin(groupmemberVo);
-		return "redirect:/group/groupHome?no="+groupmemberVo.getGroup_no();
 	}
 	
 }
