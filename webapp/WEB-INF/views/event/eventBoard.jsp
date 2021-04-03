@@ -72,12 +72,6 @@
 						<td>${meetVo.event_deadline}</td>
 					</tr>
 					</c:forEach>
-					<tr>
-						<td>2</td>
-						<td>4월 정기 정모일</td>
-						<td>2020/04/06</td>
-						<td></td>
-					</tr>
 					</tbody>
 				
 				</table>

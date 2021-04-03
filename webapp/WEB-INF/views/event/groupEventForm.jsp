@@ -169,6 +169,7 @@
 									style="float: left; margin-left: 10px;">취소</button>
 							</div>
 						</div>
+						<input type="text" name="group_no" class="form-control" value="${param.no}">
 					</div>
 				</form>
 			</section>
@@ -203,7 +204,7 @@
 
 	$(function() {
 		$('#datePicker').datepicker({
-			format : "yyyy년mm월dd일", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+			format : "yyyy-mm-dd", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
 			startDate : '-1y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 			endDate : '+1y', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
 			autoclose : true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
@@ -231,7 +232,7 @@
 
 	$(function() {
 		$('#datePicker2').datepicker({
-			format : "yyyy년mm월dd일", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+			format : "yyyy-mm-dd", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
 			startDate : '-1y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 			endDate : '+1y', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
 			autoclose : true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
@@ -258,7 +259,7 @@
 	});//ready end
 
 	$('.timepicker').timepicker({
-		timeFormat : 'p h:mm',
+		timeFormat : 'HH:mm',
 		interval : 60,
 		minTime : '09',
 		maxTime : '11:00pm',

@@ -502,13 +502,19 @@
 	<!-- 미팅 등록하기 -->
 	<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
 		<![CDATA[
-			insert into event
+			insert into event (
+				EVENT_NO,
+				GROUP_NO,
+				EVENT_TITLE,
+				EVENT_DATE,
+				EVENT_DEADLINE,
+				EVENT_CONTENT
+			)
 	        values (
 	            SEQ_EVENT_NO.nextval,
 	            #{group_no},
 	            #{event_title},
 	            #{event_date},
-	            #{event_time},
 	            #{event_deadline},
 	            #{event_content}
 	      )
