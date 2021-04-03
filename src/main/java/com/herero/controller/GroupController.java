@@ -1,6 +1,5 @@
 package com.herero.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,7 +28,7 @@ public class GroupController {
 
 	// 그룹 상세 (비그룹원)
 	@RequestMapping(value = "/groupHome", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupHome(@RequestParam("no") int no, Model model, HttpSession session, UserVo userVo, GroupmemberVo groupMemberVo) {
+	public String groupHome(@RequestParam("no") int no, Model model, HttpSession session, GroupmemberVo groupMemberVo) {
 		System.out.println("/group/groupHome");
 		
 		//세션 정보 가져오기
@@ -72,50 +71,68 @@ public class GroupController {
 			}
 		}
 	
-	}
-
-	// 이벤트리스트 가져오기
-	@ResponseBody
-	@RequestMapping(value="/getEventList", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<EventVo> writeEvent(@RequestParam("no") int no) {
-		System.out.println("getEventList");
-		
-		return groupService.getListEvent(no);
-	}
-	
+	}	
 	
 	//* 이벤트등록 운영자 직접등록*/
 	@RequestMapping(value="/addEvent", method = {RequestMethod.GET, RequestMethod.POST})
 	public String addEvent(@ModelAttribute EventVo eventVo) {
 		System.out.println("/group/addEvent");
 		
-		System.out.println(eventVo);
-		
 		groupService.addEvent(eventVo);
 		
 		return "redirect:/group/groupHome?no="+eventVo.getGroup_no();
 	}
 	
-	
-	/* 이벤트등록 시스템등록*/
-	@RequestMapping(value = "/addMeeting", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addMeeting(@ModelAttribute EventVo eventVo) {
-		System.out.println("/group/addMeeting");
-
-		System.out.println(eventVo);
-
-		groupService.addMeeting(eventVo);
-
-		return "redirect:/event/eventBoard";
+	// 이벤트리스트 가져오기
+	@ResponseBody
+	@RequestMapping(value="/getEventList", method = {RequestMethod.GET, RequestMethod.POST})
+	public List<EventVo> getEventList(@RequestParam("no") int no) {
+		System.out.println("getEventList");
+		
+		return groupService.getListEvent(no);
 	}
 	
 	
-	// 그룹 이벤트(일정) 게시판
-	@RequestMapping(value = "/eventBoard", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupEventBoard() {
-		System.out.println("/group/eventBoard");
+	/* 이벤트등록 시스템등록*/
+	@RequestMapping(value = "/addMeeting", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addMeeting(@ModelAttribute EventVo eventVo, Model model) {
+		System.out.println("/group/addMeeting");
+		System.out.println(eventVo);
+		
+		model.addAttribute("eventVo", eventVo);
+		
+		System.out.println(eventVo);
+		
+		groupService.addMeeting(eventVo);
+
+		return "redirect:/group/meetList?no="+eventVo.getGroup_no();
+	}
+	
+	
+	// 그룹 미팅일정 게시판
+	@RequestMapping(value = "/meetList", method = { RequestMethod.GET, RequestMethod.POST })
+	public String groupEventBoard(@RequestParam("no") int no, Model model) {
+		System.out.println("/group/meetList");
+		
+		GroupVo groupVo = groupService.getGHome(no);
+		List<EventVo> meetingList = groupService.getListMeeting(no);
+		
+		model.addAttribute("groupVo", groupVo);
+		model.addAttribute("meetingList", meetingList);
+		
+		System.out.println(meetingList.toString());
 
 		return "event/eventBoard";
+	}
+	
+	// 그룹 미팅일정 폼
+	@RequestMapping(value = "/meetForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String groupEventForm(Model model) {
+		System.out.println("/group/meetForm");
+		
+		//그룹넘버 넘기기 > 세션이랑 
+
+		return "event/groupEventForm";
 	}
 
 	
@@ -127,23 +144,6 @@ public class GroupController {
 		return "event/eventRead";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	// 그룹 이벤트(일정) 참가
-	@RequestMapping(value = "/groupEventForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupEventForm() {
-		System.out.println("/group/groupEventForm");
-		
-		
-		//그룹넘버 넘기기 > 세션이랑 
-
-		return "event/groupEventForm";
-	}
 	
 	
 	// 그룹 이벤트(일정) 참가

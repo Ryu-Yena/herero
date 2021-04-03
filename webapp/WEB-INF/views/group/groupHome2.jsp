@@ -33,8 +33,8 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/group/groupHome2" class="active">Calender</a></li>
-						<li><a href="${pageContext.request.contextPath}/group/eventBoard">Event</a></li>
+						<li><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}" class="active">Calender</a></li>
+						<li><a href="${pageContext.request.contextPath}/group/meetList?no=${groupVo.group_no}">Event</a></li>
 						<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 						<li><a href="#cta">Setting</a></li>
 					</ul>

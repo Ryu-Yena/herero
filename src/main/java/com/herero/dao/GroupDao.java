@@ -161,21 +161,28 @@ public class GroupDao {
 		
 		sqlSession.insert("group.insertEvent", eventVo);
 	}
-	
-	
-	/* 이벤트등록 시스템등록*/
-	/*
-	 * public void insertEvent(EventVo eventVo) {
-	 * System.out.println("[groupDao] insertEvent()"); sqlSession.insert(group.)
-	 * 
-	 * }
-	 */
-	
+
+	 
 	//이벤트 리스트 가져오기
 	public List<EventVo> selectListEvent(int group_no) {
 		System.out.println("[groupDao] selectListEvent()");
 		
 		return sqlSession.selectList("group.selectListEvent", group_no);
 	}
+	
+	/* 미팅등록*/
+    public int insertMeeting(EventVo eventVo) {
+	 System.out.println("[groupDao] insertMeeting()");
+	 System.out.println(eventVo.toString());
+	 
+	 return sqlSession.insert("group.insertMeeting", eventVo);
+    }
+    
+    //미팅 리스트 가져오기
+    public List<EventVo> selectListMeeting(int group_no){
+    	System.out.println("[groupDao] selectListMeeting()");
+    	
+    	return sqlSession.selectList("group.selectListMeeting", group_no);
+    }
 	
 }

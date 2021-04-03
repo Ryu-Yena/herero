@@ -225,13 +225,6 @@ public class GroupService {
 		groupDao.insertEvent(eventVo);
 	}
 	
-	/* 이벤트등록 시스템등록*/
-	public void addMeeting(EventVo eventVo) {
-		System.out.println("[groupService] addMeeting()");
-		
-	}
-	
-	
 	//이벤트 리스트 가져오기
 	public List<EventVo> getListEvent(int group_no) {
 		System.out.println("[groupService] getListEvent()");
@@ -239,6 +232,19 @@ public class GroupService {
 	}
 	
 	
+	/* 미팅 등록 */
+	public int addMeeting(EventVo eventVo) {
+		System.out.println("[groupService] addMeeting()");
+		
+		return groupDao.insertMeeting(eventVo);
+	}
+	
+	//미팅 리스트 가져오기
+	public List<EventVo> getListMeeting(int group_no){
+		System.out.println("[groupService] getListMeeting()");
+		
+		return groupDao.selectListMeeting(group_no);
+	}
 	
 	
 	

@@ -482,7 +482,24 @@
 		]]>
 	</insert>
 
-<!-- 
+	<!-- 이벤트리스트 가져오기-->
+	<select id="selectListEvent" parameterType="int" resultType="com.herero.vo.EventVo">
+		<![CDATA[
+			select  event_no,
+			        group_no,
+			        event_title,
+			        event_date,
+			        event_time,
+			        event_deadline,
+			        event_content,
+			        event_title title
+			from event
+			where group_no = #{group_no}
+		]]>
+	</select>
+
+
+	<!-- 미팅 등록하기 -->
 	<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
 		<![CDATA[
 			insert into event
@@ -497,9 +514,9 @@
 	      )
 		]]>
 	</insert>
- -->
-
-	<select id="selectListEvent" parameterType="int" resultType="com.herero.vo.EventVo">
+	
+	<!-- 미팅리스트 가져오기-->
+	<select id="selectListMeeting" parameterType="int" resultType="com.herero.vo.EventVo">
 		<![CDATA[
 			select  event_no,
 			        group_no,
@@ -507,8 +524,7 @@
 			        event_date,
 			        event_time,
 			        event_deadline,
-			        event_content,
-			        event_title title
+			        event_content
 			from event
 			where group_no = #{group_no}
 		]]>

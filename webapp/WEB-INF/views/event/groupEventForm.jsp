@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>[최강류우]JAVA STUDY</title>
+<title>${groupVo.group_name}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
@@ -50,6 +50,7 @@
 	background-color : #1B1C26;
 }
 
+
 </style>
 
 </head>
@@ -83,88 +84,100 @@
 		<div id="main">
 
 			<!-- Introduction -->
-			<section id="event" class="main">
+			<section class="main">
+
 
 				<div id="step-wrapper">
 					<div class="sub_tit">진행상황</div>
-					<ul class="guide-step">
-						<li><img src="${pageContext.request.contextPath}/images/guide/">
-							<div class="title">인원모집중</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
-						<li><img src="${pageContext.request.contextPath}/images/guide/">
-							<div class="title">모집완료</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/guide/">
-							<div class="title">장소 선정중</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/guide/">
-							<div class="title">결제중</div></li>
-						<li class="step-arrow"><img src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>	
-						<li><img src="${pageContext.request.contextPath}/images/guide/">
-							<div class="title">결제완료</div></li>
+					<br>
+					<ul class="guide-step row" style="margin-left: 7%; margin-bottom: 50px;">
+						<li style="float: left;"><img class="gicon"
+							src="${pageContext.request.contextPath}/images/guide/recruit.png">
+							<div class="title" style="text-align: center;">인원모집중</div></li>
+						<li class="step-arrow" style="float: left;"><img
+							src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
+						<li style="float: left;"><img class="gicon"
+							src="${pageContext.request.contextPath}/images/guide/recruit-com.png">
+							<div class="title" style="text-align: center;">모집완료</div></li>
+						<li class="step-arrow" style="float: left;"><img
+							src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
+						<li style="float: left;"><img class="gicon"
+							src="${pageContext.request.contextPath}/images/guide/place.png">
+							<div class="title" style="text-align: center;">장소 선정중</div></li>
+						<li class="step-arrow" style="float: left;"><img
+							src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
+						<li style="float: left;"><img class="gicon"
+							src="${pageContext.request.contextPath}/images/guide/pay.png">
+							<div class="title" style="text-align: center;">결제중</div></li>
+						<li class="step-arrow" style="float: left;"><img
+							src="${pageContext.request.contextPath}/images/guide/arrow.png"></li>
+						<li style="float: left;"><img class="gicon"
+							src="${pageContext.request.contextPath}/images/guide/fin.png">
+							<div class="title" style="text-align: center;">결제완료</div></li>
 					</ul>
 				</div>
+				
+				<br>
 
-			<form method="POST" action="${pageContext.request.contextPath }/group/addMeeting">
-				<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins"
-					style="margin-left: 20%;">
-					<div class="wrapper wrapper--w680">
-						<div class="sub_tit">일정 만들기</div>
-						<br>
-					
+				<form method="post" action="${pageContext.request.contextPath }/group/addMeeting">
+					<div class="wrapper"
+						style="margin-left: 20%;">
+						<div class="wrapper">
+							<div class="sub_tit" style="text-align: left;">일정 만들기</div>
+							<br>
 							<div class="row">
 								<div class="form-group col-md-4">
 									<label class="form-text">일정 이름</label> <input
 										class="input--style-4" type="text" name="event_title">
 								</div>
 							</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="form-text">일정 날짜</label> <input type="text"
-								id="datePicker" name="event_date" class="form-control" value="">
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label class="form-text">일정 날짜</label> <input type="text"
+									id="datePicker" name="event_date" class="form-control" value="">
+							</div>
+
+							<div class="form-group col-md-4">
+								<label class="form-text">일정 시간</label> <input type="text"
+									name="event_time" class="timepicker">
+							</div>
 						</div>
 
-						<div class="form-group col-md-4">
-							<label class="form-text">일정 시간</label> <input type="text"
-								name="event_time" class="timepicker">
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label class="form-text">마감일</label> <input type="text"
+									id="datePicker2" name="event_deadline" class="form-control"
+									value="">
+							</div>
 						</div>
-					</div>
 
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="form-text">마감일</label> <input type="text"
-								id="datePicker2" name="event_deadline" class="form-control" value="">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label class="form-text">공지사항</label>
+								<textarea class="form-control" name="event_content"></textarea>
+							</div>
+						</div>
+						<br>
+						<div class="bt-area col-md-offset-3">
+							<div class="">
+								<button class="btn btn--radius-2 btn-cre" type="submit"
+									style="float: left;">등록</button>
+							</div>
+							<div class="">
+								<button class="btn btn--radius-2 btn-can" type="button"
+									style="float: left; margin-left: 10px;">취소</button>
+							</div>
 						</div>
 					</div>
-					
-					<div class="row">
-					<div class="form-group col-md-8">
-							<label class="form-text">공지사항</label>
-							<textarea class="form-control" name="event_content"></textarea>
-					</div>
-					</div>
-					<br>
-					<div class="bt-area col-md-offset-3">
-						<div class="">
-							<button class="btn btn--radius-2 btn-cre" type="submit"
-								style="float: left;">등록</button>
-						</div>
-						<div class="">
-							<button class="btn btn--radius-2 btn-can" type="button"
-								style="float: left; margin-left: 10px;">취소</button>
-						</div>
-					</div>
-					
-					<br>
-				</div>
-			</form>
+				</form>
 			</section>
+			
 		</div>
+
 
 		<!-- Footer -->
 		<c:import url="/WEB-INF/views/include/homeFooter.jsp"></c:import>
-
 	</div>
 
 	<!-- Scripts -->

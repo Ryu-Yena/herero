@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>[최강류우]JAVA STUDY</title>
+		<title>${groupVo.group_name}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/page.css" >
@@ -25,20 +25,17 @@
 		<div id="wrapper">
 
 		<!-- Header -->
-		<header id="header" class="alt">
-			<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
-			<h1>[최강류우]JAVA STUDY</h1>
-			<p>2021-03-12 || IT/컨텐츠<br />
-			built by <a href="#">@choikangryu</a></p>
-		</header>
+			<header id="header" class="alt">
+				<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
+				<h1>${groupVo.group_name}</h1>
+				<p>${groupVo.founded_date} || ${groupVo.category_name}<br />
+			</header>
 
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a
-					href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/group/groupEventForm" class="active">Event</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}">Calender</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/meetList?no=${groupVo.group_no}" class="active">Event</a></li>
 				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 				<li><a href="#cta">Setting</a></li>
 			</ul>
@@ -51,7 +48,7 @@
 			<section class="main">
 				<div>
 				<button id="addMeeting" class="btn btn-defualt pull-right" style="background-color:  #4a90e2; ">
-				<a href="${pageContext.request.contextPath}/group/groupEventForm">일정 추가</a></button>
+				<a href="${pageContext.request.contextPath}/group/meetForm?no=${groupVo.group_no}">일정 추가</a></button>
 				</div>
 				<br>
 				<br>
@@ -63,16 +60,18 @@
 						<th>번호</th>
 						<th>제목</th>
 						<th>날짜</th>
-						<th>상태</th>
+						<th>마감일</th>
 					</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${meetingList}" var="meetVo">
 					<tr>
-						<td>1</td>
-						<td>4월 정기 정모일 참여투표</td>
-						<td>2020/04/06</td>
-						<td>진행중</td>
+						<td>${meetVo.event_no}</td>
+						<td>${meetVo.event_title}</td>
+						<td>${meetVo.event_date}</td>
+						<td>${meetVo.event_deadline}</td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td>2</td>
 						<td>4월 정기 정모일</td>
@@ -82,57 +81,6 @@
 					</tbody>
 				
 				</table>
-				
-				<br>
-				<div class="page_wrap">
-					<div class="page_nation">
-						<a class="arrow prev"
-							href="#"></a> <a href="#" class="active">1</a> <a href="#">2</a>
-						<a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a class="arrow next" href="#"></a>
-					</div>
-				</div>
-				<br>
-				<br>
-				
-				
-				<h4>지난 일정</h4>				
-				<table class="table table-hover">
-					<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>날짜</th>
-						<th>상태</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>1</td>
-						<td>4월 정기 정모일 참여투표</td>
-						<td>2020/04/06</td>
-						<td>진행중</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>4월 정기 정모일</td>
-						<td>2020/04/06</td>
-						<td></td>
-					</tr>
-					</tbody>
-				</table>
-				
-				<br>
-				<div class="page_wrap">
-					<div class="page_nation">
-						<a class="arrow prev"
-							href="#"></a> <a href="#" class="active">1</a> <a href="#">2</a>
-						<a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-						<a class="arrow next" href="#"></a>
-					</div>
-				</div>
-				<br>
-
 			</section>
 
 		</div>

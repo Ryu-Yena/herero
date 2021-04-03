@@ -1623,16 +1623,7 @@
 		background-image: url("images/overlay.png"), linear-gradient(45deg, #dfaffd 15%, #4e6ffb 85%);
 	}
 
-		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
-			-moz-animation: none !important;
-			-webkit-animation: none !important;
-			-ms-animation: none !important;
-			animation: none !important;
-			-moz-transition: none !important;
-			-webkit-transition: none !important;
-			-ms-transition: none !important;
-			transition: none !important;
-		}
+		
 		
 	.datepicker{
 		color : #000;
@@ -2478,7 +2469,6 @@
 		}
 
 	ul {
-		list-style: disc;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
