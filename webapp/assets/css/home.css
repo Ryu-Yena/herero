@@ -3120,7 +3120,7 @@
 		}
 
 		body.is-loading #header.alt > * {
-			opacity: 0;
+			opacity: 1;
 		}
 
 		body.is-loading #header.alt .logo {
