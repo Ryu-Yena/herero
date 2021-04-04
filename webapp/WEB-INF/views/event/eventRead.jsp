@@ -124,7 +124,7 @@
 
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label class="form-text">공지사항</label>
+								<label class="label">공지사항</label>
 								<textarea class="form-control" name="event_content"></textarea>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 						<div class="row">
 						<div class="form-group col-md-8">
 							<label class="label">참가자 목록</label>
-                            <textarea placeholder="현재 참여 인원(O명)" style="width: 585px;"></textarea>
+                            <textarea  placeholder="현재 참여 인원(O명)"></textarea>
 						</div>
 						</div>
 						<br>
