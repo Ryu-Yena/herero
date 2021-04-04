@@ -217,8 +217,6 @@ public class GroupService {
 	
 	
 	
-	
-	
 	/* 이벤트등록 운영자 직접등록*/
 	public void addEvent(EventVo eventVo) {
 		System.out.println("[groupService] addEvent()");
@@ -236,7 +234,8 @@ public class GroupService {
 	public int addMeeting(EventVo eventVo) {
 		System.out.println("[groupService] addMeeting()");
 		
-		return groupDao.insertMeeting(eventVo);
+		int cnt = groupDao.insertMeeting(eventVo);
+		return cnt;
 	}
 	
 	//미팅 리스트 가져오기
