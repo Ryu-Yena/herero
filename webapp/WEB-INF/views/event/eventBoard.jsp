@@ -53,14 +53,20 @@
 				<br>
 				<br>
 				
-				<h4>진행중인 일정</h4>
+				<h4>진행중인 모임일정</h4>
 				<table class="table table-hover">
+					<colgroup>
+						<col width="10%">
+					    <col width="">
+					    <col width="20%">
+					    <col width="15%">
+					 </colgroup>
 					<thead>
 					<tr>
 						<th>번호</th>
-						<th>제목</th>
-						<th>날짜</th>
-						<th>마감일</th>
+						<th>모임제목</th>
+						<th>모임날짜</th>
+						<th>참가신청마감일</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -68,7 +74,7 @@
 					<tr>
 						<td>${meetVo.event_no}</td>
 						<td>${meetVo.event_title}</td>
-						<td>${meetVo.event_date}</td>
+						<td>${meetVo.event_date} ${meetVo.event_time}</td>
 						<td>${meetVo.event_deadline}</td>
 					</tr>
 					</c:forEach>

@@ -123,30 +123,30 @@
 					<div class="wrapper"
 						style="margin-left: 20%;">
 						<div class="wrapper">
-							<div class="sub_tit" style="text-align: left;">일정 만들기</div>
+							<div class="sub_tit" style="text-align: left;">모임일정 만들기</div>
 							<br>
 							<div class="row">
-								<div class="form-group col-md-4">
-									<label class="form-text">일정 이름</label> <input
+								<div class="form-group col-md-8">
+									<label class="form-text">모임일정 이름</label> <input
 										class="input--style-4" type="text" name="event_title">
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-4">
-								<label class="form-text">일정 날짜</label> <input type="text"
+								<label class="form-text">모임일정 날짜</label> <input type="text"
 									id="datePicker" name="event_date" class="form-control" value="">
 							</div>
 
 							<div class="form-group col-md-4">
-								<label class="form-text">일정 시간</label> <input type="text"
+								<label class="form-text">모임일정 시간</label> <input type="text"
 									name="event_time" class="timepicker">
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="form-group col-md-4">
-								<label class="form-text">마감일</label> <input type="text"
+								<label class="form-text">모임 참가신청 마감일</label> <input type="text"
 									id="datePicker2" name="event_deadline" class="form-control"
 									value="">
 							</div>
@@ -169,7 +169,7 @@
 									style="float: left; margin-left: 10px;">취소</button>
 							</div>
 						</div>
-						<input type="text" name="group_no" class="form-control" value="${param.no}">
+						<input type="hidden" name="group_no" class="form-control" value="${param.no}">
 					</div>
 				</form>
 			</section>

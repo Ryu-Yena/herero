@@ -489,8 +489,9 @@
 			        group_no,
 			        event_title,
 			        event_date,
-			        event_time,
-			        event_deadline,
+			        TO_CHAR(event_date,'YYYY-MM-DD') event_date,
+			        TO_CHAR(event_time,'HH24:MI') event_time,
+			        TO_CHAR(event_deadline,'YYYY-MM-DD') event_deadline,
 			        event_content,
 			        event_title title
 			from event
@@ -502,20 +503,14 @@
 	<!-- 미팅 등록하기 -->
 	<insert id="insertMeeting" parameterType="com.herero.vo.EventVo">
 		<![CDATA[
-			insert into event (
-				EVENT_NO,
-				GROUP_NO,
-				EVENT_TITLE,
-				EVENT_DATE,
-				EVENT_DEADLINE,
-				EVENT_CONTENT
-			)
+			insert into event 
 	        values (
 	            SEQ_EVENT_NO.nextval,
 	            #{group_no},
 	            #{event_title},
-	            #{event_date},
-	            #{event_deadline},
+	            TO_DATE(#{event_date}||' '||#{event_time},'YYYY-MM-DD HH24:MI'),
+	            TO_DATE(#{event_date}||' '||#{event_time},'YYYY-MM-DD HH24:MI'),
+	            TO_DATE(#{event_deadline},'YYYY-MM-DD'),
 	            #{event_content}
 	      )
 		]]>
@@ -527,12 +522,14 @@
 			select  event_no,
 			        group_no,
 			        event_title,
-			        event_date,
-			        event_time,
+			        TO_CHAR(event_date,'YYYY-MM-DD') event_date,
+			        TO_CHAR(event_time,'HH24:MI') event_time,
+			        TO_CHAR(event_deadline,'YYYY-MM-DD') event_deadline,
 			        event_deadline,
 			        event_content
 			from event
 			where group_no = #{group_no}
+			order by event_no desc
 		]]>
 	</select>
 
