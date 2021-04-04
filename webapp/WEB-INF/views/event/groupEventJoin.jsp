@@ -18,18 +18,7 @@
 
 <style>
 
-#step-wrapper{margin-top: 60px;}
-#step-wrapper .sub_tit{font-size: 24px; font-weight:  600;}
-#step-wrapper .guide-step {list-style: none; padding: 0; margin-top: 50px;}
-#step-wrapper .guide-step:after{content:""; clear: both; display: block;}
-#step-wrapper .guide-step li{text-align: center; float: left; width:calc(18% + 6px);box-sizing:border-box;padding-left:20px;}
-#step-wrapper .guide-step li:first-child{width:calc(18% - 24px);}
-#step-wrapper .guide-step li:nth-child(n+2){background-image:url("/images/event/arrow.png");background-repeat:no-repeat; background-position: left  7.5px top 40px; background-size: 14px;}
-#step-wrapper .guide-step li .title{font-size: 18px; font-weight: 600; margin-top: 10px;}
-#step-wrapper .guide-step li .desc{margin-top: 10px; font-size: 12px;}
-#step-wrapper img {width : 50px;}
-#step-wrapper .guide-step .step-arrow {width : 0px;}
-#step-wrapper .guide-step .step-arrow img {width : 20px;}
+
 
 .eventinfo label {
 	display : block;
@@ -123,37 +112,10 @@
 					</ul>
 				</div>
 				
-				<!-- <div class="eventinfo">
-					<div class="eventname">
-						<label for="name">일정이름</label>
-						<input id="namebox" type="text">
-					</div>
-					<div class="eventdate">
-						<label for="name">일정날짜</label>
-						<input type="text" id="datepicker">
-					</div>
-					<div class="eventname">
-						<label for="name">일정시간</label>
-						<select id="eventTime">
-							<option selected>시간설정</option>
-							<option>07:00</option>
-							<option>07:30</option>
-							<option>08:00</option>
-							<option>08:30</option>
-						</select>
-					</div>
-					<div class="eventdate">
-						<label for="name">인원모집마감일</label>
-						<input type="text" id="datepicker">
-					</div>
-				</div>
-				<div>
-					<textarea class="eventdetail" style="width: 300px; float:left; display: inline-block;">세부내용</textarea>
-				</div> -->
+		
 				
 				
-	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins" style="margin-left: 20%;">
-        <div class="wrapper wrapper--w680">
+        <div class="wrapper">
             <div class="card card-4">
                 <div class="card-body">
                     <div class="sub_tit">일정 참가</div><br>
@@ -228,13 +190,7 @@
                 </div>
             </div>
         </div>
-    </div>
-				
-				
-				
-				
-
-				<div class="spotlight"></div>
+	
 
 			</section>
 

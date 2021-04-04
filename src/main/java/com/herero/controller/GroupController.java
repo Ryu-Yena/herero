@@ -99,10 +99,6 @@ public class GroupController {
 		System.out.println("/group/addMeeting");
 		System.out.println(eventVo);
 		
-		model.addAttribute("eventVo", eventVo);
-		
-		System.out.println(eventVo);
-		
 		groupService.addMeeting(eventVo);
 
 		return "redirect:/group/meetList?no="+eventVo.getGroup_no();
