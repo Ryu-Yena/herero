@@ -13,7 +13,7 @@
 	<!-- modal -->
 	<div id="addEventModal" class="modal fade bs-example-modal-sm" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -45,7 +45,7 @@
 						<button type="submit" class="btn btn-primary" id="btn_addEvent"
 							style="background: #4e6ffb;">등록</button>
 					</div>
-					<input type="text" name="group_no" value="${param.no}">
+					<input type="hidden" name="group_no" value="${param.no}">
 				</form>
 				
 			</div>

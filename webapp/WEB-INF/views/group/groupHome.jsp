@@ -12,10 +12,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/slider.css">
 
 		<style>
-			#group-info {
-				position: relative;
-				left: 100px;
-			}
 			
 			#group-name {
 				width : 250px;
@@ -39,12 +35,12 @@
 	
 		<!-- Wrapper -->
 			<div id="wrapper">
-				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+				<c:import url="/WEB-INF/views/include/gheader.jsp"></c:import>
 				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
-						<h1>${groupVo.group_name}</h1>
-					</header>
+				<header id="header" class="alt">
+					<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
+					<h1>${groupVo.group_name}</h1>
+				</header>
 
 
 				<!-- Main -->

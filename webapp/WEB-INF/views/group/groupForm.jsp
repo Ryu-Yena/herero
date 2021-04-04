@@ -55,8 +55,8 @@
 					</div>
 					<br>
 					<br>
-					<input type="text" name="province_no" value="">
-					<input type="text" name="region_no" value="">
+					<input type="hidden" name="province_no" value="">
+					<input type="hidden" name="region_no" value="">
 					<br>
 					<br>
 					
@@ -72,7 +72,7 @@
 					</div>
 					<br>
 					<br>
-					<input type="text" name="category_no" value="">
+					<input type="hidden" name="category_no" value="">
 					<br>
 					<br>
 					<div align="left">

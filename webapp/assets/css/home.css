@@ -2994,7 +2994,7 @@
 /* Header */
 
 	#header {
-		padding: 5em 5em 1em 5em ;
+		/* padding: 5em 5em 1em 5em ; */
 		text-align: center;
 	}
 
@@ -3008,7 +3008,7 @@
 		}
 
 		#header.alt {
-			padding: 7em 5em 4em 5em ;
+			/* padding: 7em 5em 4em 5em ; */
 		}
 
 			#header.alt h1 {
@@ -3695,4 +3695,49 @@
 
 #modal-group-join [name] {
 	border: 1px solid #000000;
+}
+
+
+#gheader {
+	height: 50px;
+}
+
+#gheader > h1 {
+	float: left;
+}
+
+#gheader > h1 a:link,
+#gheader > h1 a:visited,
+#gheader > h1 a:active,
+#gheader > h1 a:hover {
+	text-decoration: none;
+	color: #007bff;
+}
+
+#gnav > ul {
+	margin-top: 10px;
+	float: right;
+}
+
+#gnav > ul > li{
+	font-size: 14px;
+	float:left;
+}
+
+#gnav > ul > li .btn-defalult {
+	padding: 3px 7px 3px 7px;
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+	font-size: 12px;
+	
+}
+
+#gnav > ul > li.userName {
+	font-weight: 800;
+	margin-right: 10px;
+}
+
+
+#header.alt .logo img {
+	margin-left: 560px;
 }

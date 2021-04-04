@@ -107,12 +107,10 @@ public class MGroupController {
 			int userNo = authUser.getUser_no();
 			groupService.addGroup(groupVo, mainImg, files, userNo); 
 			
-			return "redirect:/group/groupMain";
+			return "redirect:/mgroup/groupMain";
 		}else {
 			return "redirect:/user/loginForm";
 		}
-		
-		
 		
 		
 	}

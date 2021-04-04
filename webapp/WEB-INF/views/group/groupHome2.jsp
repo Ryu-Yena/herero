@@ -6,14 +6,16 @@
 	<head>
 		<title>${groupVo.group_name}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- modal -->
+   	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
    	   	
    	   	
    	   	<!-- fullcalendar -->
    	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fullcalendar/main.css" />
    	   	
-   	   	<!-- modal -->
-   	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />
+   	   
 
 
 	
@@ -22,7 +24,7 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
+				<c:import url="/WEB-INF/views/include/gheader.jsp"></c:import>
 				<!-- Header -->
 					<header id="header" class="alt">
 						<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>

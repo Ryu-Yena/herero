@@ -123,10 +123,15 @@ public class GroupController {
 	
 	// 그룹 미팅일정 폼
 	@RequestMapping(value = "/meetForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String groupEventForm(Model model) {
+	public String groupEventForm(@RequestParam("no") int no, Model model) {
 		System.out.println("/group/meetForm");
 		
 		//그룹넘버 넘기기 > 세션이랑 
+		
+		
+		GroupVo groupVo = groupService.getGHome(no);
+		model.addAttribute("groupVo", groupVo);
+		
 
 		return "event/groupEventForm";
 	}

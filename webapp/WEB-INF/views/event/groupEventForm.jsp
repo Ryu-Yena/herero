@@ -7,16 +7,14 @@
 <head>
 <title>${groupVo.group_name}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/home.css" />
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/calendar.css" nonce="">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <link href="${pageContext.servletContext.contextPath}/resources/jquery/jquery-ui.css?version=1.3" rel="stylesheet" type="text/css" media="screen">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css" />   	
+
 
 <style>
-
-
 
 .eventinfo label {
 	display : block;
@@ -58,23 +56,19 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-
+		<c:import url="/WEB-INF/views/include/gheader.jsp"></c:import>
 		<!-- Header -->
-		<header id="header" class="alt">
-			<span class="logo"><img
-				src="${pageContext.request.contextPath}/images/icons/logo.svg"
-				alt="" /></span>
-			<h1>${groupVo.group_name}</h1>
-		</header>
+			<header id="header" class="alt">
+				<span class="logo"><img src="${pageContext.request.contextPath}/images/icons/logo.svg" alt="" /></span>
+				<h1>${groupVo.group_name}</h1>
+				<p>${groupVo.founded_date} || ${groupVo.category_name}<br />
+			</header>
 
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a
-					href="${pageContext.request.contextPath}/group/groupHome2">Calender</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/group/groupEventForm"
-					class="active">Event</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/groupHome?no=${groupVo.group_no}">Calender</a></li>
+				<li><a href="${pageContext.request.contextPath}/group/meetList?no=${groupVo.group_no}" class="active">Event</a></li>
 				<li><a href="${pageContext.request.contextPath}/group/board">Board</a></li>
 				<li><a href="#cta">Setting</a></li>
 			</ul>
